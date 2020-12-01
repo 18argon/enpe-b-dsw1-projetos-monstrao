@@ -9,6 +9,9 @@
     <body>
         <h1>Página do Usuário Site</h1>
         <p>Olá ${sessionScope.usuarioLogado.nome}</p>
+
+        <button type="button" onclick="alert('LISTADO TODAS AS PROMOCAO DO SITE!')">R8: CRIAR Listagem de todas as promoções de um Site</button>
+
         <ul>
             <li>
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>

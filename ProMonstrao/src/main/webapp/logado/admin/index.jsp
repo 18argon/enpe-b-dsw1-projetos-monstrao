@@ -9,6 +9,10 @@
     <body>
         <h1>Página do Administrador</h1>
         <p>Olá ${sessionScope.usuarioLogado.nome}</p>
+
+        <button type="button" onclick="alert('R1: CRUD SITE!')">R1: CRUD SITE</button>
+        <button type="button" onclick="alert('R2: CRUD TEATRO!')">R2: CRUD TEATRO</button>
+
         <ul>
             <li>
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
