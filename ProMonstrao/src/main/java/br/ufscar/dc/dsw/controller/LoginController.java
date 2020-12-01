@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Index", urlPatterns = { "/index.jsp"})
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.util.Erro;
+
+@WebServlet(urlPatterns = { "/login.jsp", "/logout.jsp" })
 public class IndexController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -19,7 +23,7 @@ public class IndexController extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-    /*
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Erro erros = new Erro();
@@ -47,9 +51,9 @@ public class IndexController extends HttpServlet {
 						if (usuario.getPapel().equals("SITE")) {
 							response.sendRedirect("site/");
 						} 
-						//else {
-						//	response.sendRedirect("usuario/");
-						//}
+						/*else {
+							response.sendRedirect("usuario/");
+						}*/
 						return;
 					} else {
 						erros.add("Senha inválida!");
@@ -67,5 +71,4 @@ public class IndexController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(URL);
 		rd.forward(request, response);
 	}
-    */
 }
