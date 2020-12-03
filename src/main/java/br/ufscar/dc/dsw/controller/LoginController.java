@@ -1,4 +1,4 @@
-/*package br.ufscar.dc.dsw.controller;
+package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(name = "Login", urlPatterns = { "/login.jsp", "/logout.jsp" })
+@WebServlet(name = "login", urlPatterns = { "/logando.jsp", "/logout.jsp" })
 public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -71,4 +71,4 @@ public class LoginController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(URL);
 		rd.forward(request, response);
 	}
-}*/
+}

@@ -9,6 +9,7 @@
         <link href="${pageContext.request.contextPath}/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <h2>ProMonstrão</h2>
         <h1>Autorização de Usuário</h1>
         <c:if test="${mensagens.existeErros}">
             <div id="erro">
@@ -19,7 +20,7 @@
                 </ul>
             </div>
         </c:if>
-        <form method="post" action="index.jsp">
+        <form method="post" action="logando.jsp">
             <table>
                 <tr>
                     <th>Login: </th>
