@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
 @WebServlet(urlPatterns = "/site/*")
-public class UsuarioController extends HttpServlet {
+public class SiteController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
