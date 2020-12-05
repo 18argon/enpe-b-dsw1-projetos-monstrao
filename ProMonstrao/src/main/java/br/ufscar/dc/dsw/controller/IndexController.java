@@ -43,6 +43,5 @@ public class IndexController extends HttpServlet {
 				+ "    <button type=\"button\" onclick=\"alert('LISTADO TODOS OS TEATROS COM CIDADES!')\">R4: BOTAO DE LISTAR TODOS OS TEATROS e Cidades(asc Cidades)</button>\r\n"
 				+ "</body>\r\n"
 				+ "</html>");
-		
 	}
 }
