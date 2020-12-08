@@ -7,15 +7,16 @@
         <title>Menu do Sistema</title>
     </head>
     <body>
-        <h1>Página do Usuário Site</h1>
-        <p>Olá ${sessionScope.usuarioLogado.nome}</p>
+    <div align="center">
+        <h1>$Olá {sessionScope.siteLogado.nome}</h1>
 
-        <button type="button" onclick="alert('LISTADO TODAS AS PROMOCAO DO SITE!')">R8: CRIAR Listagem de todas as promoções de um Site</button>
+        <button onclick="location.href='./formListaPromo'" type="button">MINHAS PROMOÇÕES</button>
 
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
-            </li>
+        <ul>                 
+           	<a href="${pageContext.request.contextPath}/logout.jsp">
+    		<h3>SAIR</h3>
+    		</a>
         </ul>
+    </div>
     </body>
 </html>

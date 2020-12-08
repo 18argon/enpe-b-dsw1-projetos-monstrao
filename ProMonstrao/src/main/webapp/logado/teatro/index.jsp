@@ -4,19 +4,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu do Sistema</title>
+        <title>Menu Teatro</title>
     </head>
     <body>
-        <h1>Página do Usuário Teatro</h1>
-        <p>Olá ${sessionScope.usuarioLogado.nome}</p>
+    <div align="center">
+        <h1>Olá ${sessionScope.teatroLogado.nome}</h1>
+        
+        <br>
+        <button onclick="location.href='./formInsercaoPromo'" type="button">INSERIR NOVA PROMOÇÃO</button>
+        <br><br>
+		<button onclick="location.href='./formListaPromo'" type="button">MINHAS PROMOÇÕES</button>
 
-        <button type="button" onclick="alert('TELA DE CRIAR PROMOCAO!')">R5 e R6: CRIAR PROMOCAO TEATRO</button>
-        <button type="button" onclick="alert('LISTADO TODAS AS PROMOCAO DESTE TEATRO!')">R7: CRIAR Listagem de todas as promoções de um teatro</button>
-
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
-            </li>
+        <ul>                 
+           	<a href="${pageContext.request.contextPath}/logout.jsp">
+    		<h3>SAIR</h3>
+    		</a>
         </ul>
+    </div>
     </body>
 </html>
