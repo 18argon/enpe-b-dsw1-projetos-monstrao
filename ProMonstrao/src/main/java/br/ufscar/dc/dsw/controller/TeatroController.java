@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.domain.Teatro;
+import br.ufscar.dc.dsw.util.ParamParser;
 
 @WebServlet(urlPatterns = "/teatro/*")
 public class TeatroController extends HttpServlet {
@@ -73,7 +74,7 @@ public class TeatroController extends HttpServlet {
                     .forward(request, response);
         } else if (action.equals("/editar")) {
             String idParam = request.getParameter("id");
-            Long id = parseInt(idParam);
+            Long id = ParamParser.parseLong(idParam);
             if (id != null) {
                 Teatro teatro = teatroDAO.getById(id);
                 if (teatro == null) {
@@ -87,24 +88,13 @@ public class TeatroController extends HttpServlet {
             }
         } else if (action.equals("/deletar")) {
             String idParam = request.getParameter("id");
-            Long id = parseInt(idParam);
+            Long id = ParamParser.parseLong(idParam);
             if (id != null) teatroDAO.delete(id);
             response.sendRedirect(request.getContextPath() + "/teatro");
         } else {
             redirectToNotFound(request, response);
         }
 
-    }
-
-    private Long parseInt(String param) {
-        if (param == null || param.isEmpty()) {
-            return null;
-        }
-        try {
-            return Long.parseLong(param);
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
     private void list(HttpServletRequest request, HttpServletResponse response)

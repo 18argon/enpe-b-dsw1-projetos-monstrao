@@ -13,6 +13,7 @@ import br.ufscar.dc.dsw.dao.SiteDao;
 import br.ufscar.dc.dsw.domain.Site;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.util.ParamParser;
 
 @WebServlet(urlPatterns = "/site/*")
 public class SiteController extends HttpServlet {
@@ -75,7 +76,7 @@ public class SiteController extends HttpServlet {
                     .forward(request, response);
         } else if (action.equals("/editar")) {
             String idParam = request.getParameter("id");
-            Long id = parseInt(idParam);
+            Long id = ParamParser.parseLong(idParam);
             if (id != null) {
                 Site site = siteDao.getById(id);
                 if (site == null) {
@@ -89,22 +90,11 @@ public class SiteController extends HttpServlet {
             }
         } else if (action.equals("/deletar")) {
             String idParam = request.getParameter("id");
-            Long id = parseInt(idParam);
+            Long id = ParamParser.parseLong(idParam);
             if (id != null) siteDao.delete(id);
             response.sendRedirect(request.getContextPath() + "/site");
         } else {
             redirectToNotFound(request, response);
-        }
-    }
-
-    private Long parseInt(String param) {
-        if (param == null || param.isEmpty()) {
-            return null;
-        }
-        try {
-            return Long.parseLong(param);
-        } catch (NumberFormatException e) {
-            return null;
         }
     }
 
