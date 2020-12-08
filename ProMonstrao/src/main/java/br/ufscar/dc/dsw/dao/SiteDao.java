@@ -11,7 +11,6 @@ public class SiteDao extends GenericDAO {
     public void insert(Site site, String senha) {
 
         String sqlUsuario = "INSERT INTO usuario (email, senha, papel) VALUES (?, ?, ?)";
-        String sqlGetUsuarioId = "SELECT id FROM usuario WHERE email = ?";
         String sqlSite = "INSERT INTO site (id, email, nome, endereco, telefone) VALUES (?, ?, ?, ?, ?)";
 
         Connection conn = null;
@@ -19,8 +18,7 @@ public class SiteDao extends GenericDAO {
             conn = this.getConnection();
 
 
-            try (PreparedStatement statementUsuario = conn.prepareStatement(sqlUsuario);
-                 PreparedStatement statementGetUsuarioId = conn.prepareStatement(sqlGetUsuarioId);
+            try (PreparedStatement statementUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
                  PreparedStatement statementSite = conn.prepareStatement(sqlSite)) {
 
                 conn.setAutoCommit(false);
@@ -30,10 +28,16 @@ public class SiteDao extends GenericDAO {
                 statementUsuario.setString(3, "SITE");
                 statementUsuario.executeUpdate();
 
-                statementGetUsuarioId.setString(1, site.getEmail());
-                ResultSet rs = statementGetUsuarioId.executeQuery();
-                rs.next();
-                long id = rs.getLong("id");
+                ResultSet rs = statementUsuario.getGeneratedKeys();
+                long id;
+                if (rs.next()) {
+                    id = rs.getLong(1);
+                } else {
+                    conn.rollback();
+                    conn.setAutoCommit(true);
+                    conn.close();
+                    return;
+                }
 
                 statementSite.setLong(1, id);
                 statementSite.setString(2, site.getEmail());

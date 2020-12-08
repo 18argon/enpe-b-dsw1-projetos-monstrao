@@ -10,7 +10,6 @@ public class TeatroDAO extends GenericDAO {
 
     public void insert(Teatro teatro, String senha) {
         String sqlUsuario = "INSERT INTO usuario (email, senha, papel) VALUES (?, ?, ?)";
-        String sqlGetUsuarioId = "SELECT id FROM usuario WHERE email = ?";
         String sqlTeatro = "INSERT INTO teatro (id, email, nome, cnpj, cidade) VALUES (?, ?, ?, ?, ?)";
 
         Connection conn = null;
@@ -19,7 +18,6 @@ public class TeatroDAO extends GenericDAO {
 
 
             try (PreparedStatement statementUsuario = conn.prepareStatement(sqlUsuario);
-                 PreparedStatement statementGetUsuarioId = conn.prepareStatement(sqlGetUsuarioId);
                  PreparedStatement statementTeatro = conn.prepareStatement(sqlTeatro)) {
 
                 conn.setAutoCommit(false);
@@ -29,10 +27,16 @@ public class TeatroDAO extends GenericDAO {
                 statementUsuario.setString(3, "TEATRO");
                 statementUsuario.executeUpdate();
 
-                statementGetUsuarioId.setString(1, teatro.getEmail());
-                ResultSet rs = statementGetUsuarioId.executeQuery();
-                rs.next();
-                long id = rs.getLong("id");
+                ResultSet rs = statementUsuario.getGeneratedKeys();
+                long id;
+                if (rs.next()) {
+                    id = rs.getLong(1);
+                } else {
+                    conn.rollback();
+                    conn.setAutoCommit(true);
+                    conn.close();
+                    return;
+                }
 
                 statementTeatro.setLong(1, id);
                 statementTeatro.setString(2, teatro.getEmail());
