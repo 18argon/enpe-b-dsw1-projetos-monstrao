@@ -30,21 +30,6 @@ public class SiteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("submit") != null) {
-            Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-            Erro erros = new Erro();
-
-            if (usuario == null) {
-                response.sendRedirect(request.getContextPath());
-                return;
-            } else if (!usuario.getPapel().equals("ADMIN")) {
-                erros.add("Acesso não autorizado!");
-                erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
-                request.setAttribute("mensagens", erros);
-                request.getRequestDispatcher("/noAuth.jsp")
-                        .forward(request, response);
-                return;
-            }
-
             String action = request.getPathInfo();
             action = action != null ? action : "";
             if (action.equals("/cadastrar")) {
@@ -79,21 +64,6 @@ public class SiteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-
-        Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        Erro erros = new Erro();
-
-        if (usuario == null) {
-            response.sendRedirect(request.getContextPath());
-            return;
-        } else if (!usuario.getPapel().equals("ADMIN")) {
-            erros.add("Acesso não autorizado!");
-            erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
-            request.setAttribute("mensagens", erros);
-            request.getRequestDispatcher("/noAuth.jsp")
-                    .forward(request, response);
-            return;
-        }
 
         String action = request.getPathInfo();
         action = action != null ? action : "";

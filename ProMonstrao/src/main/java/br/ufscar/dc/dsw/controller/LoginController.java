@@ -21,12 +21,6 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        if (usuarioLogado != null) {
-            response.sendRedirect(request.getContextPath());
-            return;
-        }
-
         Erro errors = new Erro();
 
         if (request.getParameter("bOK") != null) {
@@ -68,9 +62,8 @@ public class LoginController extends HttpServlet {
         request.getSession().invalidate();
         request.setAttribute("mensagens", errors);
 
-        String URL = "/WEB-INF/jsp/login.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(URL);
-        rd.forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
+                .forward(request, response);
     }
 
     //login=teste&senha=teste&bOK=Entrar
@@ -86,6 +79,7 @@ public class LoginController extends HttpServlet {
             return;
         }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
+                .forward(request, response);
     }
 }
