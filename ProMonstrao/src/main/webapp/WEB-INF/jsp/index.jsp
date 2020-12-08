@@ -5,7 +5,6 @@
 <html>
 <fmt:bundle basename="message">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><fmt:message key="title"/></title>
   </head>
   <body>
@@ -13,10 +12,10 @@
 
   <c:if test="${usuarioLogado != null}">
     <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail()}
-    <a href="./logout"><fmt:message key="auth.login" /></a>
+    <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout" /></a>
   </c:if>
   <c:if test="${usuarioLogado == null}">
-    <a href="login.jsp"><fmt:message key="auth.logout" /></a>
+    <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login" /></a>
   </c:if>
   <div>
     <button type="button" onclick="alert('LISTADO TODAS AS PROMOÇÕES!')">
@@ -25,9 +24,9 @@
     <button type="button" onclick="alert('LISTADO TODOS OS TEATROS!')">
       Listar Teatros
     </button>
-    <button type="button" onclick="alert('LISTADO TODOS OS TEATROS COM CIDADES!')">
+    <a href="${pageContext.request.contextPath}/site/">
       Listar Sites
-    </button>
+    </a>
   </div>
   </body>
 </fmt:bundle>
