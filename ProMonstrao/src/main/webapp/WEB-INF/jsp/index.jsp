@@ -21,9 +21,9 @@
     <button type="button" onclick="alert('LISTADO TODAS AS PROMOÇÕES!')">
       Listar Promoções
     </button>
-    <button type="button" onclick="alert('LISTADO TODOS OS TEATROS!')">
+    <a href="${pageContext.request.contextPath}/teatro/">
       Listar Teatros
-    </button>
+    </a>
     <a href="${pageContext.request.contextPath}/site/">
       Listar Sites
     </a>
