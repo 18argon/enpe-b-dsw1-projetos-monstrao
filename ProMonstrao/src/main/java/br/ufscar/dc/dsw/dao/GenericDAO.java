@@ -12,7 +12,6 @@ abstract public class GenericDAO {
         	/* Setup Banco de dados MySQL */
         	
         	Class.forName("com.mysql.cj.jdbc.Driver");
-        	System.out.print("ok?\n");
         	
         } catch (ClassNotFoundException e) {
         	System.out.print("Erro no GenericDAO: " + e);
