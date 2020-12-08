@@ -8,25 +8,43 @@
     <title><fmt:message key="title"/></title>
   </head>
   <body>
-  <h2><fmt:message key="title" /></h2>
+  <h2><fmt:message key="title"/></h2>
 
   <c:if test="${usuarioLogado != null}">
     <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail()}
-    <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout" /></a>
+    <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
   </c:if>
   <c:if test="${usuarioLogado == null}">
-    <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login" /></a>
+    <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login"/></a>
   </c:if>
   <div>
-    <button type="button" onclick="alert('LISTADO TODAS AS PROMOÇÕES!')">
+      <%-- TODO: Extrair strings --%>
+    <a href="#">
       Listar Promoções
-    </button>
-    <a href="${pageContext.request.contextPath}/teatro/">
-      Listar Teatros
     </a>
-    <a href="${pageContext.request.contextPath}/site/">
-      Listar Sites
-    </a>
+
+    <c:if test="${usuarioLogado != null}">
+      <c:if test="${usuarioLogado.getPapel() == \"ADMIN\"}">
+        <a href="${pageContext.request.contextPath}/teatro/">
+          Listar Teatros
+        </a>
+        <a href="${pageContext.request.contextPath}/site/">
+          Listar Sites
+        </a>
+      </c:if>
+
+      <c:if test="${usuarioLogado.getPapel() == \"SITE\"}">
+        <a href="#">
+          Listar Promoções do Site
+        </a>
+      </c:if>
+
+      <c:if test="${usuarioLogado.getPapel() == \"TEATRO\"}">
+        <a href="#">
+          Listar Promoções do Teatro
+        </a>
+      </c:if>
+    </c:if>
   </div>
   </body>
 </fmt:bundle>
