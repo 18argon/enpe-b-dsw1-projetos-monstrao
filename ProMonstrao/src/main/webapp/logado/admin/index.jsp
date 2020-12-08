@@ -7,18 +7,16 @@
         <title>Menu do Sistema</title>
     </head>
     <body>
-    <div align="center">
-        <h1>Olá ${sessionScope.usuarioLogado.login}</h1>
+        <h1>Página do Administrador</h1>
+        <p>Olá ${sessionScope.usuarioLogado.nome}</p>
 
-        <button type="button" onclick="alert('R1: CRUD SITE!')">CRUD SITE</button>
-        <br><br>
-        <button type="button" onclick="alert('R2: CRUD TEATRO!')">CRUD TEATRO</button>
+        <button type="button" onclick="alert('R1: CRUD SITE!')">R1: CRUD SITE</button>
+        <button type="button" onclick="alert('R2: CRUD TEATRO!')">R2: CRUD TEATRO</button>
 
-        <ul>                 
-           	<a href="${pageContext.request.contextPath}/logout.jsp">
-    		<h3>SAIR</h3>
-    		</a>
+        <ul>
+            <li>
+                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
+            </li>
         </ul>
-    </div>
     </body>
 </html>

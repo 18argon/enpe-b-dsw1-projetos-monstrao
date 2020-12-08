@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Autorização de Usuário</title>
-        <link href="${pageContext.request.contextPath}/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/WEB-INF/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <h1>Autorização de Usuário</h1>
