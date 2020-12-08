@@ -12,14 +12,12 @@ public class Usuario {
 	}
 
 	public Usuario(String email, String senha, String papel) {
-		super();
 		this.email = email;
 		this.senha = senha;
 		this.papel = papel;
 	}
 
 	public Usuario(Long id, String email, String senha, String papel) {
-		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;

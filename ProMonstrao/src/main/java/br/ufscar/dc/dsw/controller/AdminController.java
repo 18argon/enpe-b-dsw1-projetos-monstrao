@@ -18,11 +18,6 @@ public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
@@ -31,7 +26,7 @@ public class AdminController extends HttpServlet {
     	if (usuario == null) {
     		response.sendRedirect(request.getContextPath());
     	} else if (usuario.getPapel().equals("ADMIN")) {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/admin/index.jsp");
             dispatcher.forward(request, response);
     	} else {
     		erros.add("Acesso não autorizado!");

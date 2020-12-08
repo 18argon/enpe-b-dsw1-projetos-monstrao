@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
         request.getSession().invalidate();
         request.setAttribute("mensagens", errors);
 
-        String URL = "/WEB-INF/login.jsp";
+        String URL = "/WEB-INF/jsp/login.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(URL);
         rd.forward(request, response);
     }
@@ -86,6 +86,6 @@ public class LoginController extends HttpServlet {
             return;
         }
 
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
     }
 }
