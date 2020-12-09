@@ -20,8 +20,8 @@ abstract public class GenericDAO {
         }
     }
 
-    protected Connection getConnection() throws SQLException {    	
-    	/* Conexão banco de dados MySQL */
+    protected Connection getConnection() throws SQLException {
+        /* Conexão banco de dados MySQL */
     	
     	String url = "jdbc:mysql://localhost:3306/ProMonstrao?useTimezone=true&serverTimezone=UTC";
     	

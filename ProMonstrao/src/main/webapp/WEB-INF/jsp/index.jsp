@@ -5,29 +5,70 @@
 <html>
 <fmt:bundle basename="message">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><fmt:message key="title"/></title>
   </head>
   <body>
-  <h2><fmt:message key="title" /></h2>
+  <h2><fmt:message key="title"/></h2>
 
   <c:if test="${usuarioLogado != null}">
     <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail()}
-    <a href="./logout"><fmt:message key="auth.login" /></a>
+    <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
   </c:if>
   <c:if test="${usuarioLogado == null}">
-    <a href="login.jsp"><fmt:message key="auth.logout" /></a>
+    <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login"/></a>
   </c:if>
   <div>
-    <button type="button" onclick="alert('LISTADO TODAS AS PROMOÇÕES!')">
+      <%-- TODO: Extrair strings --%>
+    <a href="${pageContext.request.contextPath}/promocao">
       Listar Promoções
-    </button>
-    <button type="button" onclick="alert('LISTADO TODOS OS TEATROS!')">
-      Listar Teatros
-    </button>
-    <button type="button" onclick="alert('LISTADO TODOS OS TEATROS COM CIDADES!')">
-      Listar Sites
-    </button>
+    </a>
+
+    <c:if test="${usuarioLogado != null}">
+      <c:if test="${usuarioLogado.getPapel() == \"ADMIN\"}">
+        <a href="${pageContext.request.contextPath}/teatro/">
+          Listar Teatros
+        </a>
+        <a href="${pageContext.request.contextPath}/site/">
+          Listar Sites
+        </a>
+      </c:if>
+
+      <c:if test="${usuarioLogado.getPapel() == \"SITE\"}">
+        <a href="${pageContext.request.contextPath}/promocao/site">
+          Listar Promoções do Site
+        </a>
+      </c:if>
+
+      <c:if test="${usuarioLogado.getPapel() == \"TEATRO\"}">
+        <a href="${pageContext.request.contextPath}/promocao/teatro">
+          Listar Promoções do Teatro
+        </a>
+      </c:if>
+    </c:if>
+  </div>
+
+  <div>
+    <h1>LISTA DE TEATROS</h1>
+    <table border="1">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cnpj</th>
+        <th>Nome</th>
+        <th>Cidade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <c:forEach var="teatro" items="${requestScope.listaTeatros}">
+        <tr>
+          <td>${teatro.id}</td>
+          <td>${teatro.cnpj}</td>
+          <td>${teatro.nome}</td>
+          <td>${teatro.cidade}</td>
+        </tr>
+      </c:forEach>
+      </tbody>
+    </table>
   </div>
   </body>
 </fmt:bundle>

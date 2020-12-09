@@ -2,7 +2,6 @@ package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +20,6 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
-        if (usuarioLogado != null) {
-            response.sendRedirect(request.getContextPath());
-            return;
-        }
-
         Erro errors = new Erro();
 
         if (request.getParameter("bOK") != null) {
@@ -44,17 +37,7 @@ public class LoginController extends HttpServlet {
                 if (usuario != null) {
                     if (usuario.getSenha().equals(password)) {
                         request.getSession().setAttribute("usuarioLogado", usuario);
-/*
-                        if (usuario.getPapel().equals("ADMIN")) {
-                            response.sendRedirect("admin/");
-                        }
-                        if (usuario.getPapel().equals("TEATRO")) {
-                            response.sendRedirect("teatro/");
-                        }
-                        if (usuario.getPapel().equals("SITE")) {
-                            response.sendRedirect("site/");
-                        }
-*/
+
                         response.sendRedirect(request.getContextPath());
                         return;
                     } else {
@@ -68,13 +51,9 @@ public class LoginController extends HttpServlet {
         request.getSession().invalidate();
         request.setAttribute("mensagens", errors);
 
-        String URL = "/WEB-INF/login.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(URL);
-        rd.forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
+                .forward(request, response);
     }
-
-    //login=teste&senha=teste&bOK=Entrar
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -86,6 +65,7 @@ public class LoginController extends HttpServlet {
             return;
         }
 
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
+                .forward(request, response);
     }
 }
