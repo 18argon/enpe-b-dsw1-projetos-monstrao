@@ -46,6 +46,30 @@
       </c:if>
     </c:if>
   </div>
+
+  <div>
+    <h1>LISTA DE TEATROS</h1>
+    <table border="1">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cnpj</th>
+        <th>Nome</th>
+        <th>Cidade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <c:forEach var="teatro" items="${requestScope.listaTeatros}">
+        <tr>
+          <td>${teatro.id}</td>
+          <td>${teatro.cnpj}</td>
+          <td>${teatro.nome}</td>
+          <td>${teatro.cidade}</td>
+        </tr>
+      </c:forEach>
+      </tbody>
+    </table>
+  </div>
   </body>
 </fmt:bundle>
 </html>
