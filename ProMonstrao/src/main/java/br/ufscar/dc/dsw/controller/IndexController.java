@@ -1,6 +1,10 @@
 package br.ufscar.dc.dsw.controller;
 
+import br.ufscar.dc.dsw.dao.TeatroDAO;
+import br.ufscar.dc.dsw.domain.Teatro;
+
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,13 +12,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Home", urlPatterns = { "" })
+@WebServlet(name = "Home", urlPatterns = { "", "/lista-teatros" })
 public class IndexController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private TeatroDAO dao;
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").include(req, resp);
+	public void init() {
+		dao = new TeatroDAO();
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		List<Teatro> listaTeatros;
+		String cidade = request.getParameter("cidade");
+		if (cidade != null) {
+			listaTeatros = dao.getByCidade(cidade);
+		} else {
+			listaTeatros = dao.getAll();
+		}
+		request.setAttribute("listaTeatros", listaTeatros);
+		request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").include(request, response);
 	}
 }
