@@ -51,41 +51,51 @@ CREATE TABLE promocao
     FOREIGN KEY (id_teatro) REFERENCES teatro (id) ON DELETE CASCADE
 );
 
+-- Admins
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (1, 'admin@admin', 'admin', 'ADMIN');
+VALUES (1, 'admin1@admin', 'admin1', 'ADMIN');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (2, 'admin2@admin', 'admin2', 'ADMIN');
 
+-- Sites
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (2, 'site1@site', 'site', 'SITE');
-
+VALUES (3, 'site1@site', 'site1', 'SITE');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (3, 'teatro1@teatro', 'teatro', 'TEATRO');
+VALUES (4, 'site2@site', 'site2', 'SITE');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (5, 'site3@site', 'site3', 'SITE');
 
 INSERT INTO site (id, email, nome, endereco, telefone)
-VALUES (2, 'site1@site.com', 'Site Monstrão', 'https://site1.com', '+55 19 95812-5148');
+VALUES (3, 'site1@site', 'Site Monstrao1', 'http://site.com', '169134134');
+INSERT INTO site (id, email, nome, endereco, telefone)
+VALUES (4, 'site2@site', 'Site Monstrao2', 'http://site.com', '169132341');
+INSERT INTO site (id, email, nome, endereco, telefone)
+VALUES (5, 'site3@site', 'Site Monstrao3', 'http://site.com', '234694124');
+
+-- Teatros
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (6, 'teatro1@teatro', 'teatro1', 'TEATRO');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (7, 'teatro2@teatro', 'teatro2', 'TEATRO');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (8, 'teatro3@teatro', 'teatro3', 'TEATRO');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (9, 'teatro4@teatro', 'teatro4', 'TEATRO');
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (10, 'teatro5@teatro', 'teatro5', 'TEATRO');
 
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (3, 'teatro1@teatro', '01.234.567/8901-23', 'Teatro Monstrão', 'São Carlos City');
+VALUES (6, 'teatro1@teatro', '01.234.537/1211-23', 'Teatro Monstrao1', 'Sao Carlos City');
+INSERT INTO teatro (id, email, cnpj, nome, cidade)
+VALUES (7, 'teatro2@teatro', '01.234.563/1301-23', 'Teatro Monstrao2', 'Sao Carlos City');
+INSERT INTO teatro (id, email, cnpj, nome, cidade)
+VALUES (8, 'teatro3@teatro', '01.214.591/3531-23', 'Teatro Monstrao3', 'Sao Carlos City');
+INSERT INTO teatro (id, email, cnpj, nome, cidade)
+VALUES (9, 'teatro4@teatro', '01.264.767/8411-23', 'Teatro Monstrao4', 'Sao Carlos City');
+INSERT INTO teatro (id, email, cnpj, nome, cidade)
+VALUES (10, 'teatro5@teatro', '01.934.557/8901-23', 'Teatro Monstrao5', 'Sao Carlos City');
 
--- Querys
-
--- #R1 Insert já tem
--- SELECT * FROM site WHERE id =
--- UPDATE site SET qualquercoluna = WHERE id =
--- DELETE FROM site WHERE id = 
-
--- #R3
--- SELECT id, cnpj, nome, cidade FROM teatro
--- UPDATE teatro SET qualquercoluna = WHERE id =
--- DELETE FROM teatro WHERE id = 
-
--- #R4
--- SELECT id, cnpj, nome, cidade FROM teatro WHERE cidade = ''
-
--- #R5
--- INSERT INTO promocao(id_site, id_teatro, nome_peca, preco, data_peca) VALUES ()
-
--- #R7
--- SELECT id_site, id_teatro, nome_peca, preco, data_peca FROM promocao
-
--- #R8 
--- SELECT id_site, id_teatro, nome_peca, preco, data_peca FROM promocao WHERE id_site = 
+INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca)
+VALUES (3, 6, 'Peca Monstrao de Natal', 34.50, '2020-12-24 23:59:00');
+INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca)
+VALUES (4, 7, 'Peca Monstrao de Ano Novo', 34.50, '2020-12-31 23:59:00');
