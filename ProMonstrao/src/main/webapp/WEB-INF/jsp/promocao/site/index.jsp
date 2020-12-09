@@ -20,6 +20,7 @@
 
   <div>
     <h1>Lista de Promoções</h1>
+    <a href="${pageContext.request.contextPath}/promocao/site/cadastrar">Cadastrar nova promoção</a>
     <table>
       <thead>
       <tr>
@@ -47,7 +48,7 @@
               Editar
             </a>
             <span>   </span>
-            <a href="${pageContext.request.contextPath}/promocao/deletar?id=${promocao.id}">
+            <a href="${pageContext.request.contextPath}/promocao/site/deletar?id=${promocao.id}">
               Deletar
             </a>
           </td>

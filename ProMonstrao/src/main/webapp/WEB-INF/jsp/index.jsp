@@ -19,7 +19,7 @@
   </c:if>
   <div>
       <%-- TODO: Extrair strings --%>
-    <a href="#">
+    <a href="${pageContext.request.contextPath}/promocao">
       Listar Promoções
     </a>
 
@@ -34,13 +34,13 @@
       </c:if>
 
       <c:if test="${usuarioLogado.getPapel() == \"SITE\"}">
-        <a href="#">
+        <a href="${pageContext.request.contextPath}/promocao/site">
           Listar Promoções do Site
         </a>
       </c:if>
 
       <c:if test="${usuarioLogado.getPapel() == \"TEATRO\"}">
-        <a href="#">
+        <a href="${pageContext.request.contextPath}/promocao/teatro">
           Listar Promoções do Teatro
         </a>
       </c:if>

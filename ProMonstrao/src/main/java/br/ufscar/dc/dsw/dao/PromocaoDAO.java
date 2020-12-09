@@ -71,4 +71,37 @@ public class PromocaoDAO extends GenericDAO {
 
         return new Promocao(id, idSite, idTeatro, nome, preco, data);
     }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM promocao where id = ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Promocao getById(Long id) {
+        Promocao promocao = null;
+
+        String sql = "SELECT * from promocao WHERE id = ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+
+                promocao = parseResult(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return promocao;
+    }
 }
