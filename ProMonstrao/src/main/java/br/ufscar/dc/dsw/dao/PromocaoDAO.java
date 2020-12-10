@@ -1,7 +1,6 @@
 package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.domain.Promocao;
-import br.ufscar.dc.dsw.domain.Site;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,22 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public class PromocaoDAO extends GenericDAO {
-
-    public List<Promocao> getAll() {
-        List<Promocao> lista = new ArrayList<>();
-
-        String sql = "SELECT * from promocao";
-        try (Connection conn = this.getConnection();
-             Statement statement = conn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                lista.add(parseResult(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return lista;
-    }
 
     public List<Promocao> getBySite(long idSite) {
         List<Promocao> lista = new ArrayList<>();
@@ -70,38 +53,5 @@ public class PromocaoDAO extends GenericDAO {
         Date data = rs.getDate("data_peca");
 
         return new Promocao(id, idSite, idTeatro, nome, preco, data);
-    }
-
-    public void delete(Long id) {
-        String sql = "DELETE FROM promocao where id = ?";
-
-        try (Connection conn = this.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
-
-            statement.setLong(1, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Promocao getById(Long id) {
-        Promocao promocao = null;
-
-        String sql = "SELECT * from promocao WHERE id = ?";
-
-        try (Connection conn = this.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
-
-            statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-
-                promocao = parseResult(resultSet);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return promocao;
     }
 }
