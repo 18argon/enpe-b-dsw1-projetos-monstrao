@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class SiteFilter implements Filter {
+public class TeatroFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         Erro erros = new Erro();
@@ -17,9 +17,9 @@ public class SiteFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 
-        if (!usuario.getPapel().equals("SITE")) {
+        if (!usuario.getPapel().equals("TEATRO")) {
             erros.add("Acesso não autorizado!");
-            erros.add("Apenas Papel [SITE] tem acesso a essa página");
+            erros.add("Apenas Papel [TEATRO] tem acesso a essa página");
             request.setAttribute("mensagens", erros);
             request.getRequestDispatcher("/WEB-INF/jsp/noAuth.jsp")
                     .forward(request, response);

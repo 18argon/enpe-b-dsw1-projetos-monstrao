@@ -24,8 +24,8 @@
   </filter>
 
   <filter>
-    <filter-name>SiteFilter</filter-name>
-    <filter-class>br.ufscar.dc.dsw.filters.SiteFilter</filter-class>
+    <filter-name>TeatroFilter</filter-name>
+    <filter-class>br.ufscar.dc.dsw.filters.TeatroFilter</filter-class>
   </filter>
 
   <filter>
@@ -64,7 +64,7 @@
   </filter-mapping>
 
   <filter-mapping>
-    <filter-name>SiteFilter</filter-name>
+    <filter-name>TeatroFilter</filter-name>
     <url-pattern>/promocao/cadastrar</url-pattern>
   </filter-mapping>
 

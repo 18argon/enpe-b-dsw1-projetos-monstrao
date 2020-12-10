@@ -1,6 +1,5 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.util.Date;
 
 public class Promocao {
     private Long id;
@@ -8,9 +7,9 @@ public class Promocao {
     private Long idTeatro;
     private String nome;
     private float preco;
-    private Date data;
+    private String data;
 
-    public Promocao(Long id, Long idSite, Long idTeatro, String nome, float preco, Date data) {
+    public Promocao(Long id, Long idSite, Long idTeatro, String nome, float preco, String data) {
         this.id = id;
         this.idSite = idSite;
         this.idTeatro = idTeatro;
@@ -59,11 +58,11 @@ public class Promocao {
         this.preco = preco;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 }

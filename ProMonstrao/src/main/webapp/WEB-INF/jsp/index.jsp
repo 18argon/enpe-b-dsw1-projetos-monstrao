@@ -11,7 +11,7 @@
   <h2><fmt:message key="title"/></h2>
 
   <c:if test="${usuarioLogado != null}">
-    <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail}
+    <fmt:message key="home.greeting"/>, ${usuarioLogado.email}
     <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
   </c:if>
   <c:if test="${usuarioLogado == null}">

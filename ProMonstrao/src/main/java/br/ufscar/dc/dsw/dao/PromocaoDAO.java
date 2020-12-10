@@ -44,13 +44,46 @@ public class PromocaoDAO extends GenericDAO {
         return lista;
     }
 
-    private Promocao parseResult(ResultSet rs) throws SQLException{
+    public void insert(Promocao promocao) {
+        String sql = "INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+
+            statement.setLong(1, promocao.getIdSite());
+            statement.setLong(2, promocao.getIdTeatro());
+            statement.setString(3, promocao.getNome());
+            statement.setFloat(4, promocao.getPreco());
+            statement.setString(5, promocao.getData());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public boolean checkIfExists(Promocao promocao) {
+
+        String sql = "SELECT * from promocao WHERE (id_teatro = ? OR id_site = ?) AND data_peca = ?";
+        try (Connection conn = this.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setLong(1, promocao.getIdTeatro());
+            statement.setLong(2, promocao.getIdSite());
+            statement.setString(3, promocao.getData());
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Promocao parseResult(ResultSet rs) throws SQLException {
         long id = rs.getLong("id");
         long idSite = rs.getLong("id_site");
         long idTeatro = rs.getLong("id_teatro");
         String nome = rs.getString("nome_peca");
         float preco = rs.getFloat("preco");
-        Date data = rs.getDate("data_peca");
+        String data = rs.getString("data_peca");
 
         return new Promocao(id, idSite, idTeatro, nome, preco, data);
     }

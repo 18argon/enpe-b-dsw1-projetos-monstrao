@@ -5,7 +5,6 @@ import br.ufscar.dc.dsw.dao.SiteDao;
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.domain.Promocao;
 import br.ufscar.dc.dsw.domain.Site;
-import br.ufscar.dc.dsw.domain.Teatro;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.ParamParser;
 
@@ -31,6 +30,34 @@ public class PromocaoController extends HttpServlet {
         promocaoDAO = new PromocaoDAO();
         siteDao = new SiteDao();
         teatroDao = new TeatroDAO();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("submit") != null) {
+            String action = request.getPathInfo();
+            action = action != null ? action : "";
+            if (action.equals("/cadastrar")) {
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+                Long idSite = ParamParser.parseLong(request.getParameter("id_site"));
+                String nome = request.getParameter("nome");
+                Float preco = ParamParser.parseFloat(request.getParameter("preco"));
+                String data = request.getParameter("data");
+
+                // TODO: Validar dados
+                Promocao promocao = new Promocao(null, idSite, usuario.getId(), nome, preco, data);
+
+                if (promocaoDAO.checkIfExists(promocao)) {
+                    // TODO: Adicionar erro
+                    request.getRequestDispatcher("/WEB-INF/jsp/promocao/cadastrar.jsp")
+                            .forward(request, response);
+                    return;
+                }
+                promocaoDAO.insert(promocao);
+            }
+        }
+        response.sendRedirect(request.getContextPath() + "/promocao");
+
     }
 
     @Override

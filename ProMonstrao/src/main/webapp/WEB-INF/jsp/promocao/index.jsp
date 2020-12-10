@@ -20,7 +20,7 @@
 
   <div>
     <h1>Lista de Promoções</h1>
-    <c:if test="${usuarioLogado.papel == \"SITE\"}">
+    <c:if test="${usuarioLogado.papel == \"TEATRO\"}">
       <a href="${pageContext.request.contextPath}/promocao/cadastrar">Cadastrar nova promoção</a>
     </c:if>
     <table>

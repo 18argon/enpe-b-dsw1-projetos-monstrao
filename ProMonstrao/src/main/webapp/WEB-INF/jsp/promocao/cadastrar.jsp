@@ -9,34 +9,34 @@
 <div class="center">
   <h1>INSERIR PROMOÇÃO</h1>
 
-  <form method="post" action="${pageContext.request.contextPath}/promocao/site/cadastrar">
+  <form method="post" action="${pageContext.request.contextPath}/promocao/cadastrar">
     <div>
-      <label for="teatro">Site Responsável</label>
-      <select id="teatro" name="id_teatro">
+      <label for="site">Site</label>
+      <select id="site" name="id_site">
         <option value="">--Escolha um teatro--</option>
-        <c:forEach items="${teatros}" var="teatro">
-          <option value="${teatro.id}">${teatro.nome}</option>
+        <c:forEach items="${sites}" var="site">
+          <option value="${site.id}">${site.nome}</option>
         </c:forEach>
       </select>
     </div>
 
     <div>
-      <label for="nome_peca">Nome da Peça: </label>
-      <input type="text" id="nome_peca" name="nome_peca" size="45" required value="${promocao.nome}"/>
+      <label for="nome_peca">Nome: </label>
+      <input type="text" id="nome_peca" name="nome" size="45" required value="${promocao.nome}"/>
     </div>
 
     <div>
       <label for="preco_peca">Preço: </label>
-      <input type="text" id="preco_peca" name="preco_peca" size="45" required value="${promocao.preco}"/>
+      <input type="text" id="preco_peca" name="preco" size="45" required value="${promocao.preco}"/>
     </div>
 
     <div>
-      <label for="data_peca">Data da Peça: </label>
-      <input type="text" id="data_peca" name="data_peca" size="45" required value="${promocao.data}"/>
+      <label for="data_peca">Data: </label>
+      <input type="text" id="data_peca" name="data" size="45" required value="${promocao.data}"/>
     </div>
 
     <div>
-      <button>CRIAR</button>
+      <button name="submit">CRIAR</button>
     </div>
   </form>
 </div>

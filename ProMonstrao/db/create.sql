@@ -45,7 +45,7 @@ CREATE TABLE promocao
     id_teatro BIGINT       NOT NULL,
     nome_peca VARCHAR(256) NOT NULL,
     preco     FLOAT        NOT NULL,
-    data_peca DATETIME     NOT NULL,
+    data_peca VARCHAR(64)  NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (id_site) REFERENCES site (id) ON DELETE CASCADE,
     FOREIGN KEY (id_teatro) REFERENCES teatro (id) ON DELETE CASCADE
