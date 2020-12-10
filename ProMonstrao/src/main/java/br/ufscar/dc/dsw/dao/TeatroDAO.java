@@ -17,7 +17,7 @@ public class TeatroDAO extends GenericDAO {
             conn = this.getConnection();
 
 
-            try (PreparedStatement statementUsuario = conn.prepareStatement(sqlUsuario);
+            try (PreparedStatement statementUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
                  PreparedStatement statementTeatro = conn.prepareStatement(sqlTeatro)) {
 
                 conn.setAutoCommit(false);
