@@ -189,4 +189,27 @@ public class TeatroDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Teatro> getAllOrderByCidade() {
+        List<Teatro> lista = new ArrayList<>();
+
+        String sql = "SELECT * from teatro ORDER BY cidade";
+        try (Connection conn = this.getConnection();
+             Statement statement = conn.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id");
+                String nome = resultSet.getString("nome");
+                String email = resultSet.getString("email");
+                String cnpj = resultSet.getString("cnpj");
+                String cidade = resultSet.getString("cidade");
+                Teatro teatro = new Teatro(id, email, nome, cnpj, cidade);
+                lista.add(teatro);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Home", urlPatterns = { "", "/lista-teatros" })
+@WebServlet(name = "Home", urlPatterns = { "" })
 public class IndexController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -28,9 +28,9 @@ public class IndexController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Teatro> listaTeatros;
-		String cidade = request.getParameter("cidade");
-		if (cidade != null) {
-			listaTeatros = dao.getByCidade(cidade);
+		String ordenar = request.getParameter("ordenar");
+		if (ordenar != null) {
+			listaTeatros = dao.getAllOrderByCidade();
 		} else {
 			listaTeatros = dao.getAll();
 		}

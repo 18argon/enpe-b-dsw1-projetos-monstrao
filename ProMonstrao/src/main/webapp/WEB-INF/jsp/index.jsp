@@ -11,7 +11,7 @@
   <h2><fmt:message key="title"/></h2>
 
   <c:if test="${usuarioLogado != null}">
-    <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail()}
+    <fmt:message key="home.greeting"/>, ${usuarioLogado.getEmail}
     <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
   </c:if>
   <c:if test="${usuarioLogado == null}">
@@ -19,12 +19,9 @@
   </c:if>
   <div>
       <%-- TODO: Extrair strings --%>
-    <a href="${pageContext.request.contextPath}/promocao">
-      Listar Promoções
-    </a>
 
     <c:if test="${usuarioLogado != null}">
-      <c:if test="${usuarioLogado.getPapel() == \"ADMIN\"}">
+      <c:if test="${usuarioLogado.papel == \"ADMIN\"}">
         <a href="${pageContext.request.contextPath}/teatro/">
           Listar Teatros
         </a>
@@ -33,14 +30,14 @@
         </a>
       </c:if>
 
-      <c:if test="${usuarioLogado.getPapel() == \"SITE\"}">
-        <a href="${pageContext.request.contextPath}/promocao/site">
+      <c:if test="${usuarioLogado.papel == \"SITE\"}">
+        <a href="${pageContext.request.contextPath}/promocao/">
           Listar Promoções do Site
         </a>
       </c:if>
 
-      <c:if test="${usuarioLogado.getPapel() == \"TEATRO\"}">
-        <a href="${pageContext.request.contextPath}/promocao/teatro">
+      <c:if test="${usuarioLogado.papel == \"TEATRO\"}">
+        <a href="${pageContext.request.contextPath}/promocao/">
           Listar Promoções do Teatro
         </a>
       </c:if>
@@ -49,21 +46,29 @@
 
   <div>
     <h1>LISTA DE TEATROS</h1>
-    <table border="1">
+      <c:choose>
+        <c:when test="${param.ordenar != null}">
+          <a href="${pageContext.request.contextPath}">Resetar ordenação</a>
+        </c:when>
+        <c:otherwise>
+          <a href="${pageContext.request.contextPath}?ordenar">Ordenar por cidade</a>
+        </c:otherwise>
+      </c:choose>
+    <table>
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Cnpj</th>
+          <%--        <th>ID</th>--%>
         <th>Nome</th>
+        <th>Cnpj</th>
         <th>Cidade</th>
       </tr>
       </thead>
       <tbody>
       <c:forEach var="teatro" items="${requestScope.listaTeatros}">
         <tr>
-          <td>${teatro.id}</td>
-          <td>${teatro.cnpj}</td>
+            <%--          <td>${teatro.id}</td>--%>
           <td>${teatro.nome}</td>
+          <td>${teatro.cnpj}</td>
           <td>${teatro.cidade}</td>
         </tr>
       </c:forEach>

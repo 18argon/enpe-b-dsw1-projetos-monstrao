@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/promocao/*"})
@@ -38,84 +39,24 @@ public class PromocaoController extends HttpServlet {
         action = action != null ? action : "";
 
         if (action.equals("") || action.equals("/")) {
-            List<Promocao> lista = promocaoDAO.getAll();
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+            long idSite = usuario.getId();
+            List<Promocao> lista = new ArrayList<>();
+            if (usuario.getPapel().equals("SITE")) {
+                lista = promocaoDAO.getBySite(idSite);
+            } else if (usuario.getPapel().equals("TEATRO")) {
+                lista = promocaoDAO.getByTeatro(idSite);
+            }
             request.setAttribute("listaPromocao", lista);
             request.getRequestDispatcher("/WEB-INF/jsp/promocao/index.jsp")
                     .forward(request, response);
-        } else if (action.equals("/site")) {
-            Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-            long idSite = usuario.getId();
-            List<Promocao> lista = promocaoDAO.getBySite(idSite);
-            request.setAttribute("listaPromocao", lista);
-            request.getRequestDispatcher("/WEB-INF/jsp/promocao/site/index.jsp")
-                    .forward(request, response);
-        } else if (action.equals("/site/cadastrar")) {
-            List<Teatro> teatros = teatroDao.getAll();
-            request.setAttribute("teatros", teatros);
-            request.getRequestDispatcher("/WEB-INF/jsp/promocao/site/cadastrar.jsp")
-                    .forward(request, response);
-        } else if (action.equals("/teatro")) {
-            Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-            List<Promocao> lista = promocaoDAO.getByTeatro(usuario.getId());
-            request.setAttribute("listaPromocao", lista);
-            request.getRequestDispatcher("/WEB-INF/jsp/promocao/teatro/index.jsp")
-                    .forward(request, response);
-        } else if (action.equals("/teatro/cadastrar")) {
+        } else if (action.equals("/cadastrar")) {
             List<Site> sites = siteDao.getAll();
             request.setAttribute("sites", sites);
-            request.getRequestDispatcher("/WEB-INF/jsp/promocao/teatro/cadastrar.jsp")
+            request.getRequestDispatcher("/WEB-INF/jsp/promocao/cadastrar.jsp")
                     .forward(request, response);
-        } else if (action.equals("/site/deletar")) {
-            String idParam = request.getParameter("id");
-            Long id = ParamParser.parseLong(idParam);
-            if (id != null) promocaoDAO.delete(id);
-            response.sendRedirect(request.getContextPath() + "/promocao/site");
-        } else if (action.equals("/teatro/deletar")) {
-            String idParam = request.getParameter("id");
-            Long id = ParamParser.parseLong(idParam);
-            if (id != null) promocaoDAO.delete(id);
-            response.sendRedirect(request.getContextPath() + "/promocao/teatro");
-        } else if (action.equals("/site/editar")) {
-            String idParam = request.getParameter("id");
-            Long id = ParamParser.parseLong(idParam);
-            if (id != null) {
-                Promocao promocao = promocaoDAO.getById(id);
-                if (promocao == null) {
-                    redirectToNotFound(request, response);
-                    return;
-                }
-
-                List<Teatro> teatros = teatroDao.getAll();
-                request.setAttribute("promocao", promocao);
-                request.setAttribute("teatros", teatros);
-
-                request.getRequestDispatcher("/WEB-INF/jsp/promocao/site/editar.jsp")
-                        .forward(request, response);
-            } else {
-                redirectToNotFound(request, response);
-            }
-        } else if (action.equals("/teatro/editar")) {
-            String idParam = request.getParameter("id");
-            Long id = ParamParser.parseLong(idParam);
-            if (id != null) {
-                Promocao promocao = promocaoDAO.getById(id);
-                if (promocao == null) {
-                    redirectToNotFound(request, response);
-                    return;
-                }
-                List<Site> sites = siteDao.getAll();
-
-                request.setAttribute("promocao", promocao);
-                request.setAttribute("sites", sites);
-
-                request.getRequestDispatcher("/WEB-INF/jsp/promocao/teatro/editar.jsp")
-                        .forward(request, response);
-            } else {
-                redirectToNotFound(request, response);
-            }
         } else {
-            request.getRequestDispatcher("WEB-INF/jsp/not-found.jsp")
-                    .forward(request, response);
+            redirectToNotFound(request, response);
         }
     }
 
