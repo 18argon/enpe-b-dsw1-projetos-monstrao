@@ -49,7 +49,7 @@ public class PromocaoController extends HttpServlet {
                 Promocao promocao = new Promocao(null, idSite, usuario.getId(), nome, preco, data);
 
                 if (promocaoDAO.checkIfExists(promocao)) {
-                    // TODO: Adicionar erro
+                    // TODO: Mostrar error (já existe)
                     request.getRequestDispatcher("/WEB-INF/jsp/promocao/cadastrar.jsp")
                             .forward(request, response);
                     return;

@@ -40,6 +40,7 @@ public class SiteController extends HttpServlet {
                 String endereco = request.getParameter("endereco");
                 String telefone = request.getParameter("telefone");
 
+                // TODO: Validar campos
                 Site site = siteDao.getByEmail(email);
                 if (site != null) {
                     request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")
@@ -51,9 +52,12 @@ public class SiteController extends HttpServlet {
                 siteDao.insert(site, senha);
             } else if (action.equals("/editar")) {
                 long id = Long.parseLong(request.getParameter("id"));
+
                 String nome = request.getParameter("nome");
                 String endereco = request.getParameter("endereco");
                 String telefone = request.getParameter("telefone");
+
+                // TODO: Validar campos
                 Site site = new Site(id, nome, endereco, telefone);
                 siteDao.update(site);
             }

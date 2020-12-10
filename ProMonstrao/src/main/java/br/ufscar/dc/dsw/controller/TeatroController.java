@@ -39,8 +39,10 @@ public class TeatroController extends HttpServlet {
                 String endereco = request.getParameter("cnpj");
                 String telefone = request.getParameter("cidade");
 
+                // TODO: Validar campos
                 Teatro teatro = teatroDAO.getByEmail(email);
                 if (teatro != null) {
+                    // TODO: Mostrar erro (já existe)
                     request.getRequestDispatcher("/WEB-INF/jsp/teatro/cadastrar.jsp")
                             .forward(request, response);
                     return;
@@ -54,9 +56,10 @@ public class TeatroController extends HttpServlet {
                 String cnpj = request.getParameter("cnpj");
                 String cidade = request.getParameter("cidade");
                 Teatro teatro = new Teatro(id, null, nome, cnpj, cidade);
+
+                // TODO: Validar campos
                 teatroDAO.update(teatro);
             }
-
         }
         response.sendRedirect(request.getContextPath() + "/teatro");
     }
