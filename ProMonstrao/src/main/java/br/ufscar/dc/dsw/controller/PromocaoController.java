@@ -4,6 +4,7 @@ import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDao;
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.domain.Promocao;
+import br.ufscar.dc.dsw.domain.PromocaoDisplay;
 import br.ufscar.dc.dsw.domain.Site;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.ParamParser;
@@ -68,7 +69,7 @@ public class PromocaoController extends HttpServlet {
         if (action.equals("") || action.equals("/")) {
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
             long idSite = usuario.getId();
-            List<Promocao> lista = new ArrayList<>();
+            List<PromocaoDisplay> lista = new ArrayList<>();
             if (usuario.getPapel().equals("SITE")) {
                 lista = promocaoDAO.getBySite(idSite);
             } else if (usuario.getPapel().equals("TEATRO")) {

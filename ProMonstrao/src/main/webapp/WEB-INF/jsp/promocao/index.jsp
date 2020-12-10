@@ -26,10 +26,8 @@
     <table>
       <thead>
       <tr>
-        <th>ID</th>
-        <%-- TODO: Mudar para nomes --%>
-        <th>ID Site</th>
-        <th>ID Teatro</th>
+        <th>Nome Site</th>
+        <th>Nome Teatro</th>
         <th>Nome</th>
         <th>Preço</th>
         <th>Data</th>
@@ -38,11 +36,10 @@
       <tbody>
       <c:forEach var="promocao" items="${requestScope.listaPromocao}">
         <tr>
-          <td>${promocao.id}</td>
-          <td>${promocao.idSite}</td>
-          <td>${promocao.idTeatro}</td>
+          <td>${promocao.nomeSite}</td>
+          <td>${promocao.nomeTeatro}</td>
           <td>${promocao.nome}</td>
-          <td>${promocao.preco}</td>
+          <td>R$ ${promocao.preco}</td>
           <td>${promocao.data}</td>
         </tr>
       </c:forEach>
