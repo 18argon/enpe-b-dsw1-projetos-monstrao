@@ -21,7 +21,6 @@
   <table>
     <thead>
     <tr>
-      <th><fmt:message key="theater.list.id"/></th>
       <th><fmt:message key="theater.list.name"/></th>
       <th><fmt:message key="theater.list.email"/></th>
       <th><fmt:message key="theater.list.cnpj"/></th>
@@ -32,7 +31,6 @@
     <tbody>
     <c:forEach var="teatro" items="${requestScope.listaTeatros}">
       <tr>
-        <td>${teatro.id}</td>
         <td>${teatro.nome}</td>
         <td>${teatro.email}</td>
         <td>${teatro.cnpj}</td>

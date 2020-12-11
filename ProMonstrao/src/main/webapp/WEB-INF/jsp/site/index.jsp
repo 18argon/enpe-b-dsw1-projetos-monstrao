@@ -23,7 +23,6 @@
       <table>
         <thead>
         <tr>
-          <th><fmt:message key="site.list.id"/></th>
           <th><fmt:message key="site.list.name"/></th>
           <th><fmt:message key="site.list.email"/></th>
           <th><fmt:message key="site.list.address"/></th>
@@ -34,7 +33,6 @@
         <tbody>
         <c:forEach var="site" items="${requestScope.listaSites}">
           <tr>
-            <td>${site.id}</td>
             <td>${site.nome}</td>
             <td>${site.email}</td>
             <td>${site.endereco}</td>
