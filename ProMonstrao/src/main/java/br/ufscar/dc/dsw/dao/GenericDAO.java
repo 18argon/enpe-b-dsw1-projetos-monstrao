@@ -25,6 +25,6 @@ abstract public class GenericDAO {
     	
     	String url = "jdbc:mysql://localhost:3306/ProMonstrao?useTimezone=true&serverTimezone=UTC";
 
-    	return DriverManager.getConnection(url, "novousuario", "Ab@caxi123");
+    	return DriverManager.getConnection(url, "root", "root");
     }
 }
