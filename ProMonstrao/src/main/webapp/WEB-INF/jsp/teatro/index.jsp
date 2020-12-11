@@ -2,15 +2,12 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <fmt:bundle basename="message">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Menu do Sistema</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-  </head>
-  <body>
+  <t:base>
+  <jsp:attribute name="title">
+    Menu do Sistema</jsp:attribute>
+  <jsp:body>
   <h1><fmt:message key="theater.header"/></h1>
 
   <jsp:useBean id="usuarioLogado" scope="session" type="br.ufscar.dc.dsw.domain.Usuario"/>
@@ -53,6 +50,6 @@
     </c:forEach>
     </tbody>
   </table>
-  </body>
+  </jsp:body>
+  </t:base>
 </fmt:bundle>
-</html>

@@ -20,7 +20,7 @@ public class AdminFilter implements Filter {
             erros.add("Acesso não autorizado!");
             erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
             request.setAttribute("mensagens", erros);
-            request.getRequestDispatcher("/WEB-INF/jsp/noAuth.jsp")
+            request.getRequestDispatcher("/WEB-INF/jsp/no-auth.jsp")
                     .forward(request, response);
         } else {
             chain.doFilter(request, response);
