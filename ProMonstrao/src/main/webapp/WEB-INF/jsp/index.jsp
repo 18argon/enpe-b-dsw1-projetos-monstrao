@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%--  TODO: Extrair strings --%>
+
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
@@ -24,8 +24,6 @@
         </a>
       </c:if>
       <div>
-          <%-- TODO: Extrair strings --%>
-
         <c:if test="${usuarioLogado != null}">
           <c:if test="${usuarioLogado.papel == \"ADMIN\"}">
             <a href="${pageContext.request.contextPath}/teatro/">
@@ -67,7 +65,6 @@
         <table>
           <thead>
           <tr>
-              <%--        <th>ID</th>--%>
             <th><fmt:message key="home.theater.name-label" /></th>
             <th><fmt:message key="home.theater.cnpj-label" /></th>
             <th><fmt:message key="home.theater.city-label" /></th>
@@ -76,7 +73,6 @@
           <tbody>
           <c:forEach var="teatro" items="${requestScope.listaTeatros}">
             <tr>
-                <%--          <td>${teatro.id}</td>--%>
               <td>${teatro.nome}</td>
               <td>${teatro.cnpj}</td>
               <td>${teatro.cidade}</td>
