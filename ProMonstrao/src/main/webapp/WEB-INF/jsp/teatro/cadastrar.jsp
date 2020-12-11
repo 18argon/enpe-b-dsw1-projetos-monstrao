@@ -29,7 +29,7 @@
         </div>
         <div>
           <label for="password"><fmt:message key="theater.create.password"/>: </label>
-          <input type="text" id="password" name="senha" value="${teatro.password}"/>
+          <input type="password" id="password" name="senha" value="${teatro.password}"/>
         </div>
         <div>
           <label for="name"><fmt:message key="theater.create.name"/></label>

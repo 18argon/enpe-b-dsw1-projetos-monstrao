@@ -29,7 +29,7 @@
         </div>
         <div>
           <label for="password"><fmt:message key="site.create.password"/>: </label>
-          <input type="text" id="password" name="senha" value="${site.password}"/>
+          <input type="password" id="password" name="senha" value="${site.password}"/>
         </div>
         <div>
           <label for="name"><fmt:message key="site.create.name"/>: </label>
