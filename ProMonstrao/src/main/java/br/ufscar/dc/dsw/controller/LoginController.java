@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +23,21 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Erro errors = new Erro();
+        Locale locale = request.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("message", locale);
 
         if (request.getParameter("bOK") != null) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             if (email == null || email.isEmpty()) {
-                errors.add("Login não informado!");
+                errors.add(bundle.getString("errors.email-missing"));
             }
             if (password == null || password.isEmpty()) {
-                errors.add("Senha não informada!");
+
+
+                errors.add(bundle.getString("errors.password-missing"));
             }
-            if (!errors.isExisteErros()) {
+            if (!errors.hasErros()) {
                 UsuarioDAO dao = new UsuarioDAO();
                 Usuario usuario = dao.getByEmail(email);
                 if (usuario != null) {
@@ -41,10 +47,10 @@ public class LoginController extends HttpServlet {
                         response.sendRedirect(request.getContextPath());
                         return;
                     } else {
-                        errors.add("Senha inválida!");
+                        errors.add(bundle.getString("errors.credentials-invalid"));
                     }
                 } else {
-                    errors.add("Usuário não encontrado!");
+                    errors.add(bundle.getString("errors.credentials-invalid"));
                 }
             }
         }

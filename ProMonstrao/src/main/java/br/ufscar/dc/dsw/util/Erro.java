@@ -23,7 +23,7 @@ public final class Erro implements Serializable {
 		erros.add(mensagem);
 	}
 
-	public boolean isExisteErros() {
+	public boolean hasErros() {
 		return !erros.isEmpty();
 	}
 

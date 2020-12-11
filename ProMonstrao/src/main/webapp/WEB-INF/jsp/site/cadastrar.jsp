@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <fmt:bundle basename="message">
   <t:base>
@@ -9,6 +10,18 @@
       <fmt:message key="title"/>
     </jsp:attribute>
     <jsp:body>
+      <h2>Cadastrar Novo Site</h2>
+
+      <c:if test="${erros.hasErros()}">
+        <div id="erro">
+          <ul>
+            <c:forEach var="erro" items="${erros.erros}">
+              <li> ${erro} </li>
+            </c:forEach>
+          </ul>
+        </div>
+      </c:if>
+
       <form method="post">
         <div>
           <label for="email"><fmt:message key="site.create.email"/>: </label>
@@ -19,7 +32,7 @@
           <input type="text" id="password" name="senha" value="${site.password}"/>
         </div>
         <div>
-          <label for="name"><fmt:message key="site.create.name"/></label>
+          <label for="name"><fmt:message key="site.create.name"/>: </label>
           <input type="text" id="name" name="nome" value="${site.nome}"/>
         </div>
         <div>

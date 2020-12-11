@@ -2,6 +2,8 @@ package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.domain.Teatro;
+import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.util.ParamParser;
 
 @WebServlet(urlPatterns = "/teatro/*")
@@ -30,38 +33,87 @@ public class TeatroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("submit") != null) {
+            Erro erros = new Erro();
+            Locale locale = request.getLocale();
+            ResourceBundle bundle = ResourceBundle.getBundle("message", locale);
+
             String action = request.getPathInfo();
             action = action != null ? action : "";
             if (action.equals("/cadastrar")) {
                 String email = request.getParameter("email");
                 String senha = request.getParameter("senha");
                 String nome = request.getParameter("nome");
-                String endereco = request.getParameter("cnpj");
-                String telefone = request.getParameter("cidade");
+                String cnpj = request.getParameter("cnpj");
+                String cidade = request.getParameter("cidade");
 
-                // TODO: Validar campos
-                Teatro teatro = teatroDAO.getByEmail(email);
-                if (teatro != null) {
-                    // TODO: Mostrar erro (já existe)
-                    request.getRequestDispatcher("/WEB-INF/jsp/teatro/cadastrar.jsp")
-                            .forward(request, response);
-                    return;
+                if (email == null || email.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.email-missing"));
                 }
 
-                teatro = new Teatro(email, nome, endereco, telefone);
-                teatroDAO.insert(teatro, senha);
+                if (senha == null || senha.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.password-missing"));
+                }
+
+                if (nome == null || nome.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.name-missing"));
+                }
+
+                if (cnpj == null || cnpj.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.cnpj-missing"));
+                }
+
+                if (cidade == null || cidade.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.city-missing"));
+                }
+
+                if (!erros.hasErros()) {
+
+                    Teatro teatro = teatroDAO.getByEmail(email);
+                    if (teatro != null) {
+                        erros.add(bundle.getString("errors.theater.email-used"));
+                        request.setAttribute("erros", erros);
+                        request.getRequestDispatcher("/WEB-INF/jsp/teatro/cadastrar.jsp")
+                                .forward(request, response);
+                    } else {
+                        teatro = new Teatro(email, nome, cnpj, cidade);
+                        teatroDAO.insert(teatro, senha);
+                    }
+                } else {
+                    request.setAttribute("erros", erros);
+                    request.getRequestDispatcher("/WEB-INF/jsp/teatro/cadastrar.jsp")
+                            .forward(request, response);
+                }
             } else if (action.equals("/editar")) {
                 long id = Long.parseLong(request.getParameter("id"));
                 String nome = request.getParameter("nome");
                 String cnpj = request.getParameter("cnpj");
                 String cidade = request.getParameter("cidade");
-                Teatro teatro = new Teatro(id, null, nome, cnpj, cidade);
 
-                // TODO: Validar campos
-                teatroDAO.update(teatro);
+                if (nome == null || nome.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.name-missing"));
+                }
+
+                if (cnpj == null || cnpj.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.cnpj-missing"));
+                }
+
+                if (cidade == null || cidade.isEmpty()) {
+                    erros.add(bundle.getString("errors.theater.city-missing"));
+                }
+
+                if (!erros.hasErros()) {
+                    Teatro teatro = new Teatro(id, null, nome, cnpj, cidade);
+                    teatroDAO.update(teatro);
+                    response.sendRedirect(request.getContextPath() + "/teatro");
+                } else {
+                    request.setAttribute("erros", erros);
+                    request.getRequestDispatcher("/WEB-INF/jsp/teatro/editar.jsp")
+                            .forward(request, response);
+                }
             }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/teatro");
         }
-        response.sendRedirect(request.getContextPath() + "/teatro");
     }
 
     @Override

@@ -7,6 +7,7 @@ import br.ufscar.dc.dsw.domain.Promocao;
 import br.ufscar.dc.dsw.domain.PromocaoDisplay;
 import br.ufscar.dc.dsw.domain.Site;
 import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.util.ParamParser;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/promocao/*"})
 public class PromocaoController extends HttpServlet {
@@ -36,6 +39,10 @@ public class PromocaoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("submit") != null) {
+            Erro erros = new Erro();
+            Locale locale = request.getLocale();
+            ResourceBundle bundle = ResourceBundle.getBundle("message", locale);
+
             String action = request.getPathInfo();
             action = action != null ? action : "";
             if (action.equals("/cadastrar")) {
@@ -45,16 +52,38 @@ public class PromocaoController extends HttpServlet {
                 Float preco = ParamParser.parseFloat(request.getParameter("preco"));
                 String data = request.getParameter("data");
 
-                // TODO: Validar dados
-                Promocao promocao = new Promocao(null, idSite, usuario.getId(), nome, preco, data);
+                if (idSite == null) {
+                    erros.add(bundle.getString("errors.promotion.site-missing"));
+                }
 
-                if (promocaoDAO.checkIfExists(promocao)) {
-                    // TODO: Mostrar error (já existe)
+                if (nome == null || nome.isEmpty()) {
+                    erros.add(bundle.getString("errors.promotion.name-missing"));
+                }
+
+                if (preco == null) {
+                    erros.add(bundle.getString("errors.promotion.price-missing-invalid"));
+                }
+
+                if (data == null || data.isEmpty()) {
+                    erros.add(bundle.getString("errors.promotion.date-missing-invalid"));
+                }
+
+                if (!erros.hasErros()) {
+                    Promocao promocao = new Promocao(null, idSite, usuario.getId(), nome, preco, data);
+
+                    if (promocaoDAO.checkIfExists(promocao)) {
+                        erros.add(bundle.getString("errors.promotion.date-already-used"));
+                        request.setAttribute("erros", erros);
+                        request.getRequestDispatcher("/WEB-INF/jsp/promocao/cadastrar.jsp")
+                                .forward(request, response);
+                        return;
+                    }
+                    promocaoDAO.insert(promocao);
+                } else {
+                    request.setAttribute("erros", erros);
                     request.getRequestDispatcher("/WEB-INF/jsp/promocao/cadastrar.jsp")
                             .forward(request, response);
-                    return;
                 }
-                promocaoDAO.insert(promocao);
             }
         }
         response.sendRedirect(request.getContextPath() + "/promocao");

@@ -2,12 +2,28 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
       <fmt:message key="title"/>
     </jsp:attribute>
     <jsp:body>
+      <h2>
+        Editar Teatro
+      </h2>
+
+      <c:if test="${erros.hasErros()}">
+        <div id="erro">
+          <ul>
+            <c:forEach var="erro" items="${erros.erros}">
+              <li> ${erro} </li>
+            </c:forEach>
+          </ul>
+        </div>
+      </c:if>
+
       <form method="post">
         <input type="text" id="id" name="id" value="${teatro.id}" hidden/>
         <div>

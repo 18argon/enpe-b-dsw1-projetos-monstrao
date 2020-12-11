@@ -13,6 +13,16 @@
       <div>
         <h1><fmt:message key="promotion.create.title" /></h1>
 
+        <c:if test="${erros.hasErros()}">
+          <div id="erro">
+            <ul>
+              <c:forEach var="erro" items="${erros.erros}">
+                <li> ${erro} </li>
+              </c:forEach>
+            </ul>
+          </div>
+        </c:if>
+
         <form method="post" action="${pageContext.request.contextPath}/promocao/cadastrar">
           <div>
             <label for="site">

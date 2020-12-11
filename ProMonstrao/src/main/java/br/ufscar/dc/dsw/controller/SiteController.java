@@ -2,6 +2,8 @@ package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.dao.SiteDao;
 import br.ufscar.dc.dsw.domain.Site;
-import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.util.ParamParser;
 
@@ -31,6 +32,10 @@ public class SiteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("submit") != null) {
+            Erro erros = new Erro();
+            Locale locale = request.getLocale();
+            ResourceBundle bundle = ResourceBundle.getBundle("message", locale);
+
             String action = request.getPathInfo();
             action = action != null ? action : "";
             if (action.equals("/cadastrar")) {
@@ -40,16 +45,43 @@ public class SiteController extends HttpServlet {
                 String endereco = request.getParameter("endereco");
                 String telefone = request.getParameter("telefone");
 
-                // TODO: Validar campos
-                Site site = siteDao.getByEmail(email);
-                if (site != null) {
-                    request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")
-                            .forward(request, response);
-                    return;
+                if (email == null || email.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.email-missing"));
                 }
 
-                site = new Site(email, nome, endereco, telefone);
-                siteDao.insert(site, senha);
+                if (senha == null || senha.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.password-missing"));
+                }
+
+                if (nome == null || nome.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.name-missing"));
+                }
+
+                if (endereco == null || endereco.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.url-missing"));
+                }
+
+                if (telefone == null || telefone.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.phone-missing"));
+                }
+
+                if (!erros.hasErros()) {
+                    Site site = siteDao.getByEmail(email);
+                    if (site != null) {
+                        erros.add(bundle.getString("errors.website.email-used"));
+                        request.setAttribute("erros", erros);
+                        request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")
+                                .forward(request, response);
+                        return;
+                    }
+
+                    site = new Site(email, nome, endereco, telefone);
+                    siteDao.insert(site, senha);
+                } else {
+                    request.setAttribute("erros", erros);
+                    request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")
+                            .forward(request, response);
+                }
             } else if (action.equals("/editar")) {
                 long id = Long.parseLong(request.getParameter("id"));
 
@@ -57,12 +89,31 @@ public class SiteController extends HttpServlet {
                 String endereco = request.getParameter("endereco");
                 String telefone = request.getParameter("telefone");
 
-                // TODO: Validar campos
-                Site site = new Site(id, nome, endereco, telefone);
-                siteDao.update(site);
+                if (nome == null || nome.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.name-missing"));
+                }
+
+                if (endereco == null || endereco.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.url-missing"));
+                }
+
+                if (telefone == null || telefone.isEmpty()) {
+                    erros.add(bundle.getString("errors.website.phone-missing"));
+                }
+
+                if (!erros.hasErros()) {
+                    Site site = new Site(id, nome, endereco, telefone);
+                    siteDao.update(site);
+                    response.sendRedirect(request.getContextPath() + "/site");
+                } else {
+                    request.setAttribute("erros", erros);
+                    request.getRequestDispatcher("/WEB-INF/jsp/site/editar.jsp")
+                            .forward(request, response);
+                }
+            } else {
+                response.sendRedirect(request.getContextPath() + "/site");
             }
 
-            response.sendRedirect(request.getContextPath() + "/site");
         }
     }
 
