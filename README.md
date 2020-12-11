@@ -28,13 +28,13 @@ mvn tomcat7:deploy
 - Segue alguns logins que estao no banco que voce pode utilizar:
 
 ```
-admin1@admin
+admin1@admin.com
 admin1
 
-teatro1@teatro
+teatro1@teatro.com
 teatro1
 
-site1@site
+site1@site.com
 site1
 ```
 
