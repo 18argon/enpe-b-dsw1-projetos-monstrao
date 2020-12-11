@@ -22,7 +22,9 @@
 mvn tomcat7:deploy
 ```
 
-3. Pagina inicial com os requisitos 3 e 4 funcionando.
+3. Acesse a Pagina inicial 
+
+http://localhost:8080/ProMonstrao/
 
 4. Na tela de login exite 3 tipos de usuarios: Admin, Teatro e Site
 Segue alguns logins que estao no banco que voce pode utilizar
