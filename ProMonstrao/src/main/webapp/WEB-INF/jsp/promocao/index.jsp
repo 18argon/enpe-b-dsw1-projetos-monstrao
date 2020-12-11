@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%--  TODO: Extrair strings --%>
+
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
@@ -14,25 +14,31 @@
 
       <c:if test="${usuarioLogado != null}">
         <fmt:message key="home.greeting"/>, ${usuarioLogado.email}
-        <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
+        <a href="${pageContext.request.contextPath}/logout">
+          <fmt:message key="auth.logout"/>
+        </a>
       </c:if>
       <c:if test="${usuarioLogado == null}">
-        <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login"/></a>
+        <a href="${pageContext.request.contextPath}/login">
+          <fmt:message key="auth.login"/>
+        </a>
       </c:if>
 
       <div>
-        <h1>Lista de Promoções</h1>
+        <h1><fmt:message key="promotion.title"/></h1>
         <c:if test="${usuarioLogado.papel == \"TEATRO\"}">
-          <a href="${pageContext.request.contextPath}/promocao/cadastrar">Cadastrar nova promoção</a>
+          <a href="${pageContext.request.contextPath}/promocao/cadastrar">
+            <fmt:message key="promotion.create-action"/>
+          </a>
         </c:if>
         <table>
           <thead>
           <tr>
-            <th>Nome Site</th>
-            <th>Nome Teatro</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Data</th>
+            <th><fmt:message key="promotion.table.website-name"/></th>
+            <th><fmt:message key="promotion.table.theater-name"/></th>
+            <th><fmt:message key="promotion.table.play-name"/></th>
+            <th><fmt:message key="promotion.table.price"/></th>
+            <th><fmt:message key="promotion.table.date"/></th>
           </tr>
           </thead>
           <tbody>

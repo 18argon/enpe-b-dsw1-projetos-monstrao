@@ -4,21 +4,22 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--  TODO: Extrair strings --%>
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
-      Title
+      <fmt:message key="title" />
     </jsp:attribute>
     <jsp:body>
       <div>
-        <h1>INSERIR PROMOÇÃO</h1>
+        <h1><fmt:message key="promotion.create.title" /></h1>
 
         <form method="post" action="${pageContext.request.contextPath}/promocao/cadastrar">
           <div>
-            <label for="site">Site</label>
+            <label for="site">
+              <fmt:message key="promotion.create.site-label" />
+            </label>
             <select id="site" name="id_site">
-              <option value="">--Escolha um teatro--</option>
+              <option value="">--<fmt:message key="promotion.create.site-default" />--</option>
               <c:forEach items="${sites}" var="site">
                 <option value="${site.id}">${site.nome}</option>
               </c:forEach>
@@ -26,22 +27,22 @@
           </div>
 
           <div>
-            <label for="nome_peca">Nome: </label>
+            <label for="nome_peca"><fmt:message key="promotion.create.play-name-label" />: </label>
             <input type="text" id="nome_peca" name="nome" size="45" required value="${promocao.nome}"/>
           </div>
 
           <div>
-            <label for="preco_peca">Preço: </label>
+            <label for="preco_peca"><fmt:message key="promotion.create.price-label" />: </label>
             <input type="text" id="preco_peca" name="preco" size="45" required value="${promocao.preco}"/>
           </div>
 
           <div>
-            <label for="data_peca">Data: </label>
+            <label for="data_peca"><fmt:message key="promotion.create.date-label" />: </label>
             <input type="text" id="data_peca" name="data" size="45" required value="${promocao.data}"/>
           </div>
 
           <div>
-            <button name="submit">CRIAR</button>
+            <button name="submit"><fmt:message key="promotion.create.submit-label" /></button>
           </div>
         </form>
       </div>
