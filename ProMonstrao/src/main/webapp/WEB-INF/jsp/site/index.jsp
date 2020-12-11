@@ -3,10 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
-      Menu do Sistema
+      <fmt:message key="title" />
     </jsp:attribute>
     <jsp:body>
       <h1><fmt:message key="site.header"/></h1>

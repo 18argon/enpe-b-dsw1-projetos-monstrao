@@ -2,13 +2,14 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--  TODO: Extrair strings --%>
 <t:base>
   <jsp:attribute name="title">
-    Autorização de Usuário
+    <fmt:message key="title"/>
   </jsp:attribute>
   <jsp:body>
-    <h1>Autorização de Usuário</h1>
+    <h1><fmt:message key="no-auth.title"/></h1>
     <c:if test="${mensagens.existeErros}">
       <div id="erro">
         <ul>

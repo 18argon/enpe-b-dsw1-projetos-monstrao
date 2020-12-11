@@ -14,10 +14,14 @@
 
       <c:if test="${usuarioLogado != null}">
         <fmt:message key="home.greeting"/>, ${usuarioLogado.email}
-        <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
+        <a href="${pageContext.request.contextPath}/logout">
+          <fmt:message key="auth.logout"/>
+        </a>
       </c:if>
       <c:if test="${usuarioLogado == null}">
-        <a href="${pageContext.request.contextPath}/login"><fmt:message key="auth.login"/></a>
+        <a href="${pageContext.request.contextPath}/login">
+          <fmt:message key="auth.login"/>
+        </a>
       </c:if>
       <div>
           <%-- TODO: Extrair strings --%>
@@ -25,44 +29,48 @@
         <c:if test="${usuarioLogado != null}">
           <c:if test="${usuarioLogado.papel == \"ADMIN\"}">
             <a href="${pageContext.request.contextPath}/teatro/">
-              Listar Teatros
+              <fmt:message key="home.list-theater-action" />
             </a>
             <a href="${pageContext.request.contextPath}/site/">
-              Listar Sites
+              <fmt:message key="home.list-websites-action" />
             </a>
           </c:if>
 
           <c:if test="${usuarioLogado.papel == \"SITE\"}">
             <a href="${pageContext.request.contextPath}/promocao/">
-              Listar Promoções do Site
+              <fmt:message key="home.list-my-promotions-action" />
             </a>
           </c:if>
 
           <c:if test="${usuarioLogado.papel == \"TEATRO\"}">
             <a href="${pageContext.request.contextPath}/promocao/">
-              Listar Promoções do Teatro
+              <fmt:message key="home.list-my-promotions-action" />
             </a>
           </c:if>
         </c:if>
       </div>
 
       <div>
-        <h1>LISTA DE TEATROS</h1>
+        <h1><fmt:message key="home.theater.title" /></h1>
         <c:choose>
           <c:when test="${param.ordenar != null}">
-            <a href="${pageContext.request.contextPath}">Resetar ordenação</a>
+            <a href="${pageContext.request.contextPath}">
+              <fmt:message key="home.theater.reset-order" />
+            </a>
           </c:when>
           <c:otherwise>
-            <a href="${pageContext.request.contextPath}?ordenar">Ordenar por cidade</a>
+            <a href="${pageContext.request.contextPath}?ordenar">
+              <fmt:message key="home.theater.order-by-city" />
+            </a>
           </c:otherwise>
         </c:choose>
         <table>
           <thead>
           <tr>
               <%--        <th>ID</th>--%>
-            <th>Nome</th>
-            <th>Cnpj</th>
-            <th>Cidade</th>
+            <th><fmt:message key="home.theater.name-label" /></th>
+            <th><fmt:message key="home.theater.cnpj-label" /></th>
+            <th><fmt:message key="home.theater.city-label" /></th>
           </tr>
           </thead>
           <tbody>
