@@ -31,7 +31,7 @@
             <fmt:message key="promotion.create-action"/>
           </a>
         </c:if>
-        <table>
+        <table class="styled-table">
           <thead>
           <tr>
             <th><fmt:message key="promotion.table.website-name"/></th>

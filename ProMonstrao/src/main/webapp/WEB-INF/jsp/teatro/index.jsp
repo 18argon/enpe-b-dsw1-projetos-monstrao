@@ -13,12 +13,16 @@
   <jsp:useBean id="usuarioLogado" scope="session" type="br.ufscar.dc.dsw.domain.Usuario"/>
   <fmt:message key="home.greeting"/>,
   <jsp:getProperty name="usuarioLogado" property="email"/>
+  <br>
   <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
-
+  <br><br>
+  <a href="${pageContext.request.contextPath}/">Voltar</a>
+  <br>
   <div>
     <a href="${pageContext.request.contextPath}/teatro/cadastrar"><fmt:message key="theater.create_new"/></a>
   </div>
-  <table>
+  <br>
+  <table class="styled-table">
     <thead>
     <tr>
       <th><fmt:message key="theater.list.name"/></th>

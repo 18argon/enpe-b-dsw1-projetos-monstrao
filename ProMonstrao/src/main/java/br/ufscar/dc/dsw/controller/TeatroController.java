@@ -78,6 +78,7 @@ public class TeatroController extends HttpServlet {
                         teatro = new Teatro(email, nome, cnpj, cidade);
                         teatroDAO.insert(teatro, senha);
                     }
+                    response.sendRedirect(request.getContextPath() + "/teatro");
                 } else {
                     request.setAttribute("erros", erros);
                     request.getRequestDispatcher("/WEB-INF/jsp/teatro/cadastrar.jsp")

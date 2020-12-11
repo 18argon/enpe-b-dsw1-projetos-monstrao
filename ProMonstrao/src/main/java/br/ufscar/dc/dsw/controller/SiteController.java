@@ -72,11 +72,14 @@ public class SiteController extends HttpServlet {
                         request.setAttribute("erros", erros);
                         request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")
                                 .forward(request, response);
+                              
                         return;
                     }
 
                     site = new Site(email, nome, endereco, telefone);
                     siteDao.insert(site, senha);
+                    response.sendRedirect(request.getContextPath() + "/site");
+                    
                 } else {
                     request.setAttribute("erros", erros);
                     request.getRequestDispatcher("/WEB-INF/jsp/site/cadastrar.jsp")

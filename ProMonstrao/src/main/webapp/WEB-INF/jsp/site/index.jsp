@@ -15,12 +15,15 @@
       <jsp:useBean id="usuarioLogado" scope="session" type="br.ufscar.dc.dsw.domain.Usuario"/>
       <fmt:message key="home.greeting"/>,
       <jsp:getProperty name="usuarioLogado" property="email"/>
-      <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a>
-
+      <br>
+      <a href="${pageContext.request.contextPath}/logout"><fmt:message key="auth.logout"/></a> 
+      <br><br>
+      <a href="${pageContext.request.contextPath}/">Voltar</a>
       <div>
         <a href="${pageContext.request.contextPath}/site/cadastrar"><fmt:message key="site.create_new"/></a>
       </div>
-      <table>
+      <br>
+      <table class="styled-table">
         <thead>
         <tr>
           <th><fmt:message key="site.list.name"/></th>

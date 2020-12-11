@@ -14,11 +14,13 @@
 
       <c:if test="${usuarioLogado != null}">
         <fmt:message key="home.greeting"/>, ${usuarioLogado.email}
+        <br>
         <a href="${pageContext.request.contextPath}/logout">
           <fmt:message key="auth.logout"/>
         </a>
       </c:if>
       <c:if test="${usuarioLogado == null}">
+        <br>
         <a href="${pageContext.request.contextPath}/login">
           <fmt:message key="auth.login"/>
         </a>
@@ -26,21 +28,25 @@
       <div>
         <c:if test="${usuarioLogado != null}">
           <c:if test="${usuarioLogado.papel == \"ADMIN\"}">
+            <br>
             <a href="${pageContext.request.contextPath}/teatro/">
               <fmt:message key="home.list-theater-action" />
             </a>
+            <br>
             <a href="${pageContext.request.contextPath}/site/">
               <fmt:message key="home.list-websites-action" />
             </a>
           </c:if>
 
           <c:if test="${usuarioLogado.papel == \"SITE\"}">
+            <br>
             <a href="${pageContext.request.contextPath}/promocao/">
               <fmt:message key="home.list-my-promotions-action" />
             </a>
           </c:if>
 
           <c:if test="${usuarioLogado.papel == \"TEATRO\"}">
+            <br>
             <a href="${pageContext.request.contextPath}/promocao/">
               <fmt:message key="home.list-my-promotions-action" />
             </a>
@@ -62,7 +68,7 @@
             </a>
           </c:otherwise>
         </c:choose>
-        <table>
+        <table class="styled-table">
           <thead>
           <tr>
             <th><fmt:message key="home.theater.name-label" /></th>

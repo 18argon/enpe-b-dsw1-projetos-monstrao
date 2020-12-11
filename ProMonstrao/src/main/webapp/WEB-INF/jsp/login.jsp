@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<div class="bodylogin">
 <fmt:bundle basename="message">
   <t:base>
     <jsp:attribute name="title">
       <fmt:message key="title"/>
     </jsp:attribute>
     <jsp:body>
-      <h1><fmt:message key="login.label"/></h1>
       <c:if test="${mensagens.existeErros}">
         <div id="erro">
           <ul>
@@ -19,20 +19,24 @@
           </ul>
         </div>
       </c:if>
-      <form method="post">
+
+  <div class="login-page">
+    <div class="form">
+      <form class="login-form" method="post" >
         <div>
-          <label for="email"><fmt:message key="login.email"/>: </label>
-          <input type="text" id="email" name="email" value="${param.email}"/>
+          <input type="text" id="email" name="email" placeholder="Email" value="${param.email}"/>
         </div>
         <div>
-          <label for="password"><fmt:message key="login.password"/>: </label>
-          <input type="password" id="password" name="password"/>
+          <input type="password" id="password" name="password" placeholder="Senha"/>
         </div>
         <div>
-          <input type="submit" name="bOK" value="<fmt:message key="login.submit"/>"/>
+          <input type="submit" class="inputlogin" name="bOK" value="<fmt:message key="login.submit"/>"/>
         </div>
       </form>
+      </div>
+    </div>
     </jsp:body>
   </t:base>
 
 </fmt:bundle>
+</div>
