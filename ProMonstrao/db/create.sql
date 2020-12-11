@@ -98,6 +98,6 @@ INSERT INTO teatro (id, email, cnpj, nome, cidade)
 VALUES (10, 'teatro5@teatro', '01.934.557/8901-23', 'Teatro Monstrao5', 'Sao Carlos City');
 
 INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca)
-VALUES (3, 6, 'Peca Monstrao de Natal', 34.50, '2020-12-24 23:59:00');
+VALUES (3, 6, 'Peca Monstrao de Natal', 34.50, '2020-12-18');
 INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca)
-VALUES (4, 7, 'Peca Monstrao de Ano Novo', 34.50, '2020-12-31 23:59:00');
+VALUES (4, 7, 'Peca Monstrao de Ano Novo', 34.50, '2020-12-05');
