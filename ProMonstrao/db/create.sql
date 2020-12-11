@@ -4,8 +4,7 @@ DATABASE IF EXISTS ProMonstrao;
 CREATE
 DATABASE ProMonstrao;
 
-USE
-ProMonstrao;
+USE ProMonstrao;
 
 CREATE TABLE usuario
 (
@@ -53,45 +52,48 @@ CREATE TABLE promocao
 
 -- Admins
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (1, 'admin1@admin', 'admin1', 'ADMIN');
+VALUES (1, 'admin1@admin.com', 'admin1', 'ADMIN');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (2, 'admin2@admin', 'admin2', 'ADMIN');
+VALUES (2, 'admin2@admin.com', 'admin2', 'ADMIN');
 
 -- Sites
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (3, 'site1@site', 'site1', 'SITE');
+VALUES (3, 'site1@site.com', 'site1', 'SITE');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (4, 'site2@site', 'site2', 'SITE');
+VALUES (4, 'site2@site.com', 'site2', 'SITE');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (5, 'site3@site', 'site3', 'SITE');
+VALUES (5, 'site3@site.com', 'site3', 'SITE');
 
 INSERT INTO site (id, email, nome, endereco, telefone)
-VALUES (3, 'site1@site', 'Site Monstrao1', 'http://site.com', '169134134');
+VALUES (3, 'site1@site.com', 'Site Monstrao1', 'http://site.com', '169134134');
 INSERT INTO site (id, email, nome, endereco, telefone)
-VALUES (4, 'site2@site', 'Site Monstrao2', 'http://site.com', '169132341');
+VALUES (4, 'site2@site.com', 'Site Monstrao2', 'http://site.com', '169132341');
 INSERT INTO site (id, email, nome, endereco, telefone)
-VALUES (5, 'site3@site', 'Site Monstrao3', 'http://site.com', '234694124');
+VALUES (5, 'site3@site.com', 'Site Monstrao3', 'http://site.com', '234694124');
 
 -- Teatros
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (6, 'teatro1@teatro', 'teatro1', 'TEATRO');
+VALUES (6, 'teatro1@teatro.com', 'teatro1', 'TEATRO');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (7, 'teatro2@teatro', 'teatro2', 'TEATRO');
+VALUES (7, 'teatro2@teatro.com', 'teatro2', 'TEATRO');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (8, 'teatro3@teatro', 'teatro3', 'TEATRO');
+VALUES (8, 'teatro3@teatro.com', 'teatro3', 'TEATRO');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (9, 'teatro4@teatro', 'teatro4', 'TEATRO');
+VALUES (9, 'teatro4@teatro.com', 'teatro4', 'TEATRO');
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (10, 'teatro5@teatro', 'teatro5', 'TEATRO');
+VALUES (10, 'teatro5@teatro.com', 'teatro5', 'TEATRO');
+
+INSERT INTO usuario (id, email, senha, papel)
+VALUES (11, 'teatro55@teatro', 'teatro5', 'TEATRO');
 
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (6, 'teatro1@teatro', '01.234.537/1211-23', 'Teatro Monstrao1', 'Sao Carlos City');
+VALUES (6, 'teatro1@teatro.com', '01.234.537/1211-23', 'Teatro Monstrao1', 'Sao Carlos City');
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (7, 'teatro2@teatro', '01.234.563/1301-23', 'Teatro Monstrao2', 'Sao Carlos City');
+VALUES (7, 'teatro2@teatro.com', '01.234.563/1301-23', 'Teatro Monstrao2', 'Sao Carlos City');
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (8, 'teatro3@teatro', '01.214.591/3531-23', 'Teatro Monstrao3', 'Sao Carlos City');
+VALUES (11, 'teatro55@teatro.com', '01.422.591/3531-23', 'Teatro Monstrao3', 'Araguari');
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (9, 'teatro4@teatro', '01.264.767/8411-23', 'Teatro Monstrao4', 'Sao Carlos City');
+VALUES (13, 'teatro44@teatro.com', '01.264.767/8411-23', 'Teatro Monstrao4', 'Uberaba');
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
 VALUES (10, 'teatro5@teatro', '01.934.557/8901-23', 'Teatro Monstrao5', 'Sao Carlos City');
 
