@@ -24,8 +24,8 @@ mvn tomcat7:deploy
 
 3. Acesse a Pagina inicial : http://localhost:8080/ProMonstrao/
 
-4. Na tela de login exite 3 tipos de usuarios: Admin, Teatro e Site
-Segue alguns logins que estao no banco que voce pode utilizar
+4. Na tela de login exite 3 tipos de usuarios: Admin, Teatro e Site <br>
+- Segue alguns logins que estao no banco que voce pode utilizar:
 
 ```
 admin1@admin
@@ -38,45 +38,46 @@ site1@site
 site1
 ```
 
+
 ### Implementação Requisitos
 
-R1:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel
+R1:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel<br>
 
-R2:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk
+R2:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk<br>
 
-R3:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk
+R3:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk<br>
 
-R4:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk
+R4:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk<br>
 
-R5:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel e  Mayk
+R5:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel e  Mayk<br>
 
-R6:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk
+R6:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel e Mayk<br>
 
-R7:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo, Gabriel
+R7:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo, Gabriel<br>
 
-R8:
-(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Pabolo
+R8:<br>
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado<br>
+Divisão na implementação da funcionalidade: Pabolo<br>
 
-Refatorações: Pabolo
-Revisões: Pabolo, Gabriel e Mayk
-Front: Mayk
+Refatorações: Pabolo<br>
+Revisões: Pabolo, Gabriel e Mayk<br>
+Front: Mayk<br>
 
-
+<hr>
 
 ## Trabalho 2
 
