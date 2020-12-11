@@ -38,17 +38,17 @@
 
           <div>
             <label for="nome_peca"><fmt:message key="promotion.create.play-name-label" />: </label>
-            <input type="text" id="nome_peca" name="nome" size="45" required value="${promocao.nome}"/>
+            <input type="text" id="nome_peca" name="nome" size="45" placeholder="Peça XXXXX YYYYY" required value="${promocao.nome}"/>
           </div>
 
           <div>
             <label for="preco_peca"><fmt:message key="promotion.create.price-label" />: </label>
-            <input type="text" id="preco_peca" name="preco" size="45" required value="${promocao.preco}"/>
+            <input type="number" id="preco_peca" name="preco" size="45" placeholder="Ex: 50" required value="${promocao.preco}"/>
           </div>
 
           <div>
             <label for="data_peca"><fmt:message key="promotion.create.date-label" />: </label>
-            <input type="text" id="data_peca" name="data" size="45" required value="${promocao.data}"/>
+            <input type="date" id="data_peca" name="data" size="45" required value="${promocao.data}"/>
           </div>
 
           <div>

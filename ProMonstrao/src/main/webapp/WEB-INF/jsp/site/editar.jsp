@@ -26,19 +26,19 @@
         <input type="text" id="id" name="id" value="${site.id}" hidden/>
         <div>
           <label for="email"><fmt:message key="site.edit.email"/>: </label>
-          <input type="text" id="email" name="email" value="${site.email}" disabled/>
+          <input type="email" id="email" name="email" placeholder="fulano@ciclano.com" value="${site.email}" disabled/>
         </div>
         <div>
           <label for="nome"><fmt:message key="site.edit.name"/>: </label>
-          <input type="text" id="nome" name="nome" value="${site.nome}"/>
+          <input type="text" id="nome" name="nome" placeholder="Fulano" value="${site.nome}"/>
         </div>
         <div>
           <label for="endereco"><fmt:message key="site.edit.address"/>: </label>
-          <input type="text" id="endereco" name="endereco" value="${site.endereco}"/>
+          <input type="text" id="endereco" name="endereco" placeholder="Rua exemplo, XXX -  Bairro OLOLO" value="${site.endereco}"/>
         </div>
         <div>
           <label for="telefone"><fmt:message key="site.edit.phone"/>: </label>
-          <input type="text" id="telefone" name="telefone" value="${site.telefone}"/>
+          <input type="tel" id="telefone" name="telefone" placeholder="12345-6788" value="${site.telefone}"/>
         </div>
         <div>
           <input type="submit" name="submit" value="<fmt:message key="site.edit.submit"/>"/>
