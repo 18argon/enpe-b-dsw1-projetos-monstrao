@@ -10,7 +10,7 @@
       <fmt:message key="title"/>
     </jsp:attribute>
     <jsp:body>
-      <c:if test="${mensagens.existeErros}">
+      <c:if test="${mensagens.hasErros()}">
         <div id="erro">
           <ul>
             <c:forEach var="erro" items="${mensagens.erros}">
