@@ -84,7 +84,7 @@ INSERT INTO usuario (id, email, senha, papel)
 VALUES (10, 'teatro5@teatro.com', 'teatro5', 'TEATRO');
 
 INSERT INTO usuario (id, email, senha, papel)
-VALUES (11, 'teatro55@teatro', 'teatro5', 'TEATRO');
+VALUES (11, 'teatro55@teatro.com', 'teatro5', 'TEATRO');
 
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
 VALUES (6, 'teatro1@teatro.com', '01.234.537/1211-23', 'Teatro Monstrao1', 'Sao Carlos City');
@@ -95,7 +95,7 @@ VALUES (11, 'teatro55@teatro.com', '01.422.591/3531-23', 'Teatro Monstrao3', 'Ar
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
 VALUES (13, 'teatro44@teatro.com', '01.264.767/8411-23', 'Teatro Monstrao4', 'Uberaba');
 INSERT INTO teatro (id, email, cnpj, nome, cidade)
-VALUES (10, 'teatro5@teatro', '01.934.557/8901-23', 'Teatro Monstrao5', 'Sao Carlos City');
+VALUES (10, 'teatro5@teatro.com', '01.934.557/8901-23', 'Teatro Monstrao5', 'Sao Carlos City');
 
 INSERT INTO promocao (id_site, id_teatro, nome_peca, preco, data_peca)
 VALUES (3, 6, 'Peca Monstrao de Natal', 34.50, '2020-12-18');
