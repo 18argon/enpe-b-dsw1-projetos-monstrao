@@ -9,7 +9,7 @@
   </jsp:attribute>
   <jsp:body>
     <h1><fmt:message key="no-auth.title"/></h1>
-    <c:if test="${mensagens.existeErros}">
+    <c:if test="${mensagens.hasErros()}">
       <div id="erro">
         <ul>
           <c:forEach var="erro" items="${mensagens.erros}">
