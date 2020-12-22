@@ -1,9 +1,6 @@
 package br.ufscar.dc.dsw.promonstraomvc;
 
-import br.ufscar.dc.dsw.promonstraomvc.dao.ICityDAO;
-import br.ufscar.dc.dsw.promonstraomvc.dao.ISaleDAO;
-import br.ufscar.dc.dsw.promonstraomvc.dao.ITheaterDAO;
-import br.ufscar.dc.dsw.promonstraomvc.dao.IWebsiteDAO;
+import br.ufscar.dc.dsw.promonstraomvc.dao.*;
 import br.ufscar.dc.dsw.promonstraomvc.domain.City;
 import br.ufscar.dc.dsw.promonstraomvc.domain.Sale;
 import br.ufscar.dc.dsw.promonstraomvc.domain.Theater;
@@ -24,7 +21,8 @@ public class ProMonstraoMvcApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(ICityDAO cityDAO, ITheaterDAO theaterDAO, IWebsiteDAO websiteDAO, ISaleDAO saleDAO) {
+    public CommandLineRunner demo(ICityDAO cityDAO, ITheaterDAO theaterDAO, IWebsiteDAO websiteDAO,
+                                  ISaleDAO saleDAO, IUserDAO userDao) {
         return (args) -> {
             City c1 = new City("São Carlos");
             cityDAO.save(c1);
@@ -66,6 +64,8 @@ public class ProMonstraoMvcApplication {
             Sale s4 = new Sale("Hamlet", 19.99,
                     new Timestamp(Calendar.getInstance().getTimeInMillis()), t1, w3);
             saleDAO.save(s4);
+
+            System.out.println(userDao.findByEmail("website1@email.com"));
 
 //            System.out.println("\nTheater's list");
 //            theaterDAO.findAll().forEach(System.out::println);
