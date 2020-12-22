@@ -1,13 +1,15 @@
 package br.ufscar.dc.dsw.promonstraomvc.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario extends AbstractEntity<Long> {
+public class User extends AbstractEntity<Long> {
 
     @NotBlank
     @Column(nullable = false, length = 256, unique = true)
@@ -25,7 +27,11 @@ public class Usuario extends AbstractEntity<Long> {
     @Column(nullable = false, length = 10)
     private final String role;
 
-    protected Usuario(String role) {
+    protected User() {
+        this.role = "USER";
+    };
+
+    protected User(String role) {
         this.role = role;
     }
 

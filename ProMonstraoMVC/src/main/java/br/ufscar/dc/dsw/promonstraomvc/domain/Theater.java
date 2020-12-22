@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-public class Theater extends Usuario {
+public class Theater extends User {
 
     private static final String ROLE_NAME = "THEATER";
 

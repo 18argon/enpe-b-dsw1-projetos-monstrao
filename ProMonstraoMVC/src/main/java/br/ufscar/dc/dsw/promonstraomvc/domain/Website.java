@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-public class Website extends Usuario {
+public class Website extends User {
 
     private static final String ROLE_NAME = "WEBSITE";
 
