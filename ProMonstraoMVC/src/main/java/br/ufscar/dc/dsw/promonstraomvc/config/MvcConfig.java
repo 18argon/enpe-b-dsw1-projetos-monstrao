@@ -16,7 +16,7 @@ import java.util.Locale;
 @ComponentScan(basePackages = "br.ufscar.dc.dsw.promonstraomvc.config")
 public class MvcConfig  implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("home");
+//        registry.addViewController("/").setViewName("home");
     }
 
     @Bean

@@ -17,6 +17,6 @@ public interface ITheaterDAO extends CrudRepository<Theater, Long> {
 
     void deleteById(Long id);
 
-    @Query("SELECT t FROM Theater t, City c WHERE c.name = :city AND c.id = t.city")
-    List<Theater> findAllByCity(String city);
+    @Query("SELECT t FROM Theater t, City c WHERE c.id = :cityId AND c.id = t.city")
+    List<Theater> findAllByCityId(Long cityId);
 }

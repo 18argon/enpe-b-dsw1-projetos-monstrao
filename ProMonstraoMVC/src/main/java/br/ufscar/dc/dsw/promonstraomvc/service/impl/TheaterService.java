@@ -39,8 +39,8 @@ public class TheaterService implements ITheaterService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Theater> findAllByCity(String city) {
-        return theaterDAO.findAllByCity(city);
+    public List<Theater> findAllByCityId(Long cityId) {
+        return theaterDAO.findAllByCityId(cityId);
     }
 
     @Override

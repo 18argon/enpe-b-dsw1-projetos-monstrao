@@ -1,8 +1,37 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
-<head>
-</head>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
   <h1>ProMonstrao</h1>
+  <section layout:fragment="content">
+    <form action="/" method="get">
+      <div>
+        <label for="city-selector">Cidade: </label>
+        <select name="city" id="city-selector">
+          <option value="">Mostrar todas</option>
+          <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+        </select>
+      </div>
+      <button>Filtrar</button>
+    </form>
+    <table class="styled-table">
+      <thead>
+      <tr>
+        <th th:text="#{home.theater.name-label}"></th>
+        <th th:text="#{home.theater.cnpj-label}"></th>
+        <th th:text="#{home.theater.city-label}"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--   TODO: Mostrar mensagem de nenhum teatro encontrado   -->
+      <tr th:each="theater : ${theaters}">
+        <td th:text="${theater.name}"></td>
+        <td th:text="${theater.cnpj}"></td>
+        <td th:text="${theater.city.name}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
 </body>
 </html>

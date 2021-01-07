@@ -15,5 +15,5 @@ public interface ITheaterService {
 
     void deleteById(Long id);
 
-    List<Theater> findAllByCity(String city);
+    List<Theater> findAllByCityId(Long cityId);
 }
