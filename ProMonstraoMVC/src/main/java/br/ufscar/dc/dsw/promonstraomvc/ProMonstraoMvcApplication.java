@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -22,30 +23,30 @@ public class ProMonstraoMvcApplication {
 
     @Bean
     public CommandLineRunner demo(ICityDAO cityDAO, ITheaterDAO theaterDAO, IWebsiteDAO websiteDAO,
-                                  ISaleDAO saleDAO, IUserDAO userDao) {
+                                  ISaleDAO saleDAO, IUserDAO userDao, BCryptPasswordEncoder passwordEncoder) {
         return (args) -> {
             City c1 = new City("São Carlos");
             cityDAO.save(c1);
             City c2 = new City("Sorocaba");
             cityDAO.save(c2);
 
-            Website w1 = new Website("website1@email.com", "senha", "Website 1",
+            Website w1 = new Website("website1@email.com", passwordEncoder.encode("senha"), "Website 1",
                     "https://website1.com", "(15) 98766-5431");
             websiteDAO.save(w1);
-            Website w2 = new Website("website2@email.com", "senha", "Website 2",
+            Website w2 = new Website("website2@email.com", passwordEncoder.encode("senha"), "Website 2",
                     "https://website2.com", "(15) 98766-5432");
             websiteDAO.save(w2);
-            Website w3 = new Website("website3@email.com", "senha", "Website 3",
+            Website w3 = new Website("website3@email.com", passwordEncoder.encode("senha"), "Website 3",
                     "https://website3.com", "(15) 98766-5433");
             websiteDAO.save(w3);
 
-            Theater t1 = new Theater("theater1@email.com", "senha", "Theater 1",
+            Theater t1 = new Theater("theater1@email.com", passwordEncoder.encode("senha"), "Theater 1",
                     "123456789/341", c1);
             theaterDAO.save(t1);
-            Theater t2 = new Theater("theater2@email.com", "senha", "Theater 2",
+            Theater t2 = new Theater("theater2@email.com", passwordEncoder.encode("senha"), "Theater 2",
                     "123456789/342", c2);
             theaterDAO.save(t2);
-            Theater t3 = new Theater("theater3@email.com", "senha", "Theater 3",
+            Theater t3 = new Theater("theater3@email.com", passwordEncoder.encode("senha"), "Theater 3",
                     "123456789/343", c2);
             theaterDAO.save(t3);
 
