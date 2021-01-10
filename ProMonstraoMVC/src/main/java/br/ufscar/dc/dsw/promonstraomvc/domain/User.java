@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User extends AbstractEntity<Long> {
 
+    private static final String ROLE_NAME = "ROLE_UNKNOWN";
+
     @NotBlank
     @Column(nullable = false, length = 256, unique = true)
     private String email;
@@ -24,11 +26,11 @@ public class User extends AbstractEntity<Long> {
     private String name;
 
     @NotBlank
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 16)
     private final String role;
 
     protected User() {
-        this.role = "USER";
+        this.role = ROLE_NAME;
     };
 
     protected User(String role) {

@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 @Entity
 public class Admin extends User {
 
-    private static final String ROLE_NAME = "THEATER";
+    private static final String ROLE_NAME = "ROLE_ADMIN";
 
-    Admin() {
+    public Admin() {
         super(ROLE_NAME);
     }
 

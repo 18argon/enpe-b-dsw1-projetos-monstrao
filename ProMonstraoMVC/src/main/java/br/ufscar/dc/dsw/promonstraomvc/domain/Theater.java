@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Theater extends User {
 
-    private static final String ROLE_NAME = "THEATER";
+    private static final String ROLE_NAME = "ROLE_THEATER";
 
     @NotBlank
     @Column(nullable = false, unique = true)

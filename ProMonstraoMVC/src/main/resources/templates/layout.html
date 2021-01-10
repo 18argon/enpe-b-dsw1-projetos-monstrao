@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <title th:text="#{title}"></title>
@@ -21,6 +22,9 @@
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/" th:text="#{navbar.menu.home}"></a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+              <a class="nav-link" aria-current="page" href="/website" th:text="#{navbar.menu.website}"></a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto mb-2 mb-lg-0">

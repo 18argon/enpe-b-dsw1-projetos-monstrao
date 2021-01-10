@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 public class Website extends User {
 
-    private static final String ROLE_NAME = "WEBSITE";
+    private static final String ROLE_NAME = "ROLE_WEBSITE";
 
     @NotBlank
     @Column(nullable = false, length = 256)
