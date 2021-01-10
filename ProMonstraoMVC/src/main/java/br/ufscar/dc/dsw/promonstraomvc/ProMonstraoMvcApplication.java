@@ -1,10 +1,9 @@
 package br.ufscar.dc.dsw.promonstraomvc;
 
 import br.ufscar.dc.dsw.promonstraomvc.dao.*;
-import br.ufscar.dc.dsw.promonstraomvc.domain.City;
-import br.ufscar.dc.dsw.promonstraomvc.domain.Sale;
-import br.ufscar.dc.dsw.promonstraomvc.domain.Theater;
-import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.domain.*;
+import br.ufscar.dc.dsw.promonstraomvc.service.impl.AdminService;
+import br.ufscar.dc.dsw.promonstraomvc.service.spec.IAdminService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,8 +22,12 @@ public class ProMonstraoMvcApplication {
 
     @Bean
     public CommandLineRunner demo(ICityDAO cityDAO, ITheaterDAO theaterDAO, IWebsiteDAO websiteDAO,
-                                  ISaleDAO saleDAO, IUserDAO userDao, BCryptPasswordEncoder passwordEncoder) {
+                                  ISaleDAO saleDAO, IUserDAO userDao, AdminService adminService, BCryptPasswordEncoder passwordEncoder) {
         return (args) -> {
+
+            Admin admin = new Admin("admin@email.com", passwordEncoder.encode("admin"), "admin");
+            adminService.save(admin);
+
             City c1 = new City("São Carlos");
             cityDAO.save(c1);
             City c2 = new City("Sorocaba");
