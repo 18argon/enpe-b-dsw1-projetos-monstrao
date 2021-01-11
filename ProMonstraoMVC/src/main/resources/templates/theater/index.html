@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+  <section layout:fragment="content">
+
+    <div class="container">
+      <div class="row">
+        <div class="col"><h2 th:text="#{theater.title}"></h2></div>
+        <div class="col-1">
+          <a class="btn btn-success ml-auto" th:href="@{/theater/create}">Create</a>
+        </div>
+      </div>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th th:text="#{theater.table.name}"></th>
+          <th th:text="#{theater.table.email}"></th>
+          <th th:text="#{theater.table.cnpj}"></th>
+          <th th:text="#{theater.table.city}"></th>
+          <th th:text="#{theater.table.actions}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="theater : ${theaters}">
+          <td th:text="${theater.name}"></td>
+          <td th:text="${theater.email}"></td>
+          <td th:text="${theater.cnpj}"></td>
+          <td th:text="${theater.city.name}"></td>
+          <td>
+            <a class="btn btn-success" th:href="${'/theater/edit/' + theater.id}">
+              <i class="fas fa-edit"></i>
+              <span th:text="#{theater.table.action.edit}"></span>
+            </a>
+            <a class="btn btn-danger" th:href="${'/theater/delete/' + theater.id}">
+              <i class="fas fa-trash"></i>
+              <span th:text="#{theater.table.action.delete}"></span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>

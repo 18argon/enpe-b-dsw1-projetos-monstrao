@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface IUserDAO extends CrudRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE email = :email")
+    @Query("SELECT u FROM User u WHERE u.email = :email")
     User findByEmail(String email);
 }

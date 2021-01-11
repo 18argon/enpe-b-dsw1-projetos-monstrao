@@ -8,5 +8,7 @@ public interface ICityService {
 
     List<City> findAll();
 
+    City findByName(String name);
+
     City save(City city);
 }

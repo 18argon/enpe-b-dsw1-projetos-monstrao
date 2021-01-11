@@ -25,6 +25,11 @@ public class CityService implements ICityService {
     }
 
     @Override
+    public City findByName(String name) {
+        return cityDAO.findByName(name);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<City> findAll() {
         return cityDAO.findAll();
