@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col"><h2 th:text="#{website.title}"></h2></div>
         <div class="col-1">
-          <a class="btn btn-success ml-auto" th:href="@{/website/create}">Create</a>
+          <a class="btn btn-success ml-auto" th:href="@{/websites/create}">Create</a>
         </div>
       </div>
       <table class="table table-hover">
@@ -29,11 +29,11 @@
           <td th:text="${website.url}"></td>
           <td th:text="${website.phoneNumber}"></td>
           <td>
-            <a class="btn btn-success" th:href="${'/website/edit/' + website.id}">
+            <a class="btn btn-success" th:href="${'/websites/edit/' + website.id}">
               <i class="fas fa-edit"></i>
               <span th:text="#{website.table.action.edit}"></span>
             </a>
-            <a class="btn btn-danger" th:href="${'/website/delete/' + website.id}">
+            <a class="btn btn-danger" th:href="${'/websites/delete/' + website.id}">
               <i class="fas fa-trash"></i>
               <span th:text="#{website.table.action.delete}"></span>
             </a>

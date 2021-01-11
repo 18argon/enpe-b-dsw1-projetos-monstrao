@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/website")
+@RequestMapping("/websites")
 public class WebsiteController {
     private final WebsiteService websiteService;
 
@@ -29,11 +29,11 @@ public class WebsiteController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("websites", websiteService.findAll());
-        return "website/index";
+        return "websites/index";
     }
 
     @GetMapping("/delete/{id}")
-    public RedirectView delete(@PathVariable String id) {
+    public String delete(@PathVariable String id) {
         if (!id.isEmpty()) {
             try {
                 Long idParsed = Long.parseLong(id);
@@ -43,7 +43,7 @@ public class WebsiteController {
             }
         }
 
-        return new RedirectView("/website");
+        return "redirect:/websites";
     }
 
     @GetMapping("/edit/{id}")
@@ -54,43 +54,43 @@ public class WebsiteController {
                 Optional<Website> website = websiteService.findById(idParsed);
 
                 if (!website.isPresent()) {
-                    return "redirect:/website";
+                    return "redirect:/websites";
                 }
                 modelMap.addAttribute("website", website.get());
             } catch (NumberFormatException e) {
-                return "redirect:/website";
+                return "redirect:/websites";
             }
         }
 
-        return "website/edit";
+        return "websites/edit";
     }
 
     @PostMapping("/edit")
     public String edit(@Valid EditWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
-            return "/website/edit";
+            return "/websites/edit";
         }
 
         websiteService.update(dto);
-        return "redirect:/website";
+        return "redirect:/websites";
     }
 
     @GetMapping("/create")
     public String createForm() {
-        return "website/create";
+        return "websites/create";
     }
 
     @PostMapping("/create")
     public String create(@Valid CreateWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
-            return "/website/create";
+            return "/websites/create";
         }
 
         try {
             websiteService.create(dto);
         } catch (EmailAlreadyUsedException e) {
-            return "/website/create";
+            return "/websites/create";
         }
-        return "redirect:/website";
+        return "redirect:/websites";
     }
 }

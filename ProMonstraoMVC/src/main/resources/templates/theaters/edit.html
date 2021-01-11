@@ -7,7 +7,7 @@
 
     <div class="container">
       <h2 th:text="#{theater.edit.title}"></h2>
-      <form th:action="@{/theater/edit}" method="post">
+      <form th:action="@{/theaters/edit}" method="post">
         <input type="hidden" id="id" name="id" th:value="${theater.id}"/>
         <div class="form-group">
           <label for="email" th:text="#{theater.edit.label.email}"></label>

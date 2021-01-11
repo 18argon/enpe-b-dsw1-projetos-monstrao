@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/theater")
+@RequestMapping("/theaters")
 public class TheaterController {
     private final TheaterService theaterService;
 
@@ -33,11 +33,11 @@ public class TheaterController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("theaters", theaterService.findAll());
-        return "theater/index";
+        return "theaters/index";
     }
 
     @GetMapping("/delete/{id}")
-    public RedirectView delete(@PathVariable String id) {
+    public String delete(@PathVariable String id) {
         if (!id.isEmpty()) {
             try {
                 Long idParsed = Long.parseLong(id);
@@ -47,7 +47,7 @@ public class TheaterController {
             }
         }
 
-        return new RedirectView("/theater");
+        return "redirect:/theaters";
     }
 
     @GetMapping("/edit/{id}")
@@ -58,15 +58,15 @@ public class TheaterController {
                 Optional<Theater> theater = theaterService.findById(idParsed);
 
                 if (!theater.isPresent()) {
-                    return "redirect:/theater";
+                    return "redirect:/theaters";
                 }
                 modelMap.addAttribute("theater", theater.get());
             } catch (NumberFormatException e) {
-                return "redirect:/theater";
+                return "redirect:/theaters";
             }
         }
 
-        return "theater/edit";
+        return "theaters/edit";
     }
 
     @PostMapping("/edit")
@@ -81,29 +81,29 @@ public class TheaterController {
         System.out.println(theater);
 
         if (result.hasErrors()) {
-            return "/theater/edit";
+            return "/theaters/edit";
         }
 
         theaterService.update(theater);
-        return "redirect:/theater";
+        return "redirect:/theaters";
     }
 
     @GetMapping("/create")
     public String createForm() {
-        return "theater/create";
+        return "theaters/create";
     }
 
     @PostMapping("/create")
     public String create(@Valid CreateTheaterDTO theater, BindingResult result) {
         if (result.hasErrors()) {
-            return "/theater/create";
+            return "/theaters/create";
         }
 
         try {
             theaterService.create(theater);
         } catch (EmailAlreadyUsedException e) {
-            return "/theater/create";
+            return "/theaters/create";
         }
-        return "redirect:/theater";
+        return "redirect:/theaters";
     }
 }
