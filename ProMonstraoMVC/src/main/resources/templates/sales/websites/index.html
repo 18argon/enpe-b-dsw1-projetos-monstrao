@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+  <section layout:fragment="content">
+
+    <div class="container">
+      <div class="row">
+        <div class="col"><h2 th:text="#{sales.title}"></h2></div>
+        <div>
+          <a class="btn btn-success ml-auto" th:href="@{/sales/websites/create}">Create</a>
+        </div>
+      </div>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th th:text="#{sales.table.websiteName}"></th>
+          <th th:text="#{sales.table.theaterName}"></th>
+          <th th:text="#{sales.table.playName}"></th>
+          <th th:text="#{sales.table.price}"></th>
+          <th th:text="#{sales.table.date}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sale : ${sales}">
+          <td th:text="${sale.website.name}"></td>
+          <td th:text="${sale.theater.name}"></td>
+          <td th:text="${sale.playName}"></td>
+          <td th:text="${sale.price}"></td>
+          <td th:text="${sale.date}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>

@@ -53,19 +53,19 @@ public class ProMonstraoMvcApplication {
             theaterService.save(t3);
 
             Sale s1 = new Sale("O Quebra-Nozes", 19.99,
-                    new Timestamp(Calendar.getInstance().getTimeInMillis()), t1, w1);
+                    new Timestamp(Calendar.getInstance().getTimeInMillis()).toString(), t1, w1);
             saleService.save(s1);
 
             Sale s2 = new Sale("Romeu e Julieta", 19.99,
-                    new Timestamp(Calendar.getInstance().getTimeInMillis()), t2, w1);
+                    new Timestamp(Calendar.getInstance().getTimeInMillis()).toString(), t2, w1);
             saleService.save(s2);
 
             Sale s3 = new Sale("O Lago dos Cisnes", 19.99,
-                    new Timestamp(Calendar.getInstance().getTimeInMillis()), t3, w2);
+                    new Timestamp(Calendar.getInstance().getTimeInMillis()).toString(), t3, w2);
             saleService.save(s3);
 
             Sale s4 = new Sale("Hamlet", 19.99,
-                    new Timestamp(Calendar.getInstance().getTimeInMillis()), t1, w3);
+                    new Timestamp(Calendar.getInstance().getTimeInMillis()).toString(), t1, w3);
             saleService.save(s4);
 
             System.out.println(userService.findByEmail("website1@email.com"));

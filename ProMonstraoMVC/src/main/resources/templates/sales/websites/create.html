@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+  <section layout:fragment="content">
+
+    <div class="container">
+      <h2 th:text="#{sales.create.title}"></h2>
+      <form th:action="@{/sales/websites/create}" method="post">
+        <div class="form-group">
+          <label for="selector" th:text="#{sales.create.label.theaters}"></label>
+          <select class="form-control" name="theaterId" id="selector">
+            <option selected value="" th:text="#{sales.create.selectDefault.theaters}"></option>
+            <option th:each="theater : ${theaters}" th:value="${theater.id}" th:text="${theater.name}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="playName" th:text="#{sales.create.label.playName}"></label>
+          <input type="text" id="playName"
+                 name="playName" class="form-control"
+                 autofocus="autofocus">
+        </div>
+        <div class="form-group">
+          <label for="price" th:text="#{sales.create.label.price}"></label>
+          <input type="text" id="price"
+                 name="price" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="date" th:text="#{sales.create.label.date}"></label>
+          <input type="text" id="date"
+                 name="date" class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="submit" name="submit"
+                  class="btn btn-info" th:text="#{sales.create.submit}">
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

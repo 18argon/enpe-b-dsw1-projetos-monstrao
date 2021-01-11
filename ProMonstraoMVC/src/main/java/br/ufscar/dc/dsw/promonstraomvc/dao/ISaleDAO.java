@@ -14,5 +14,8 @@ public interface ISaleDAO extends CrudRepository<Sale, Long> {
     @Query("SELECT s FROM Sale s WHERE s.website.id = :websiteId")
     List<Sale> findAllByWebsite(Long websiteId);
 
+    @Query("SELECT s FROM Sale s WHERE (s.website.id = :wid OR s.theater.id = :tid) AND s.date = :date")
+    Sale hasConflict(Long wid, Long tid, String date);
+
     Sale save(Sale s);
 }

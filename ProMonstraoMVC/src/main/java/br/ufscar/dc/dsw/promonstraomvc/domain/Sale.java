@@ -18,7 +18,7 @@ public class Sale extends AbstractEntity<Long> {
     private Double price;
 
     @Column(nullable = false)
-    private Timestamp date;
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "theater_id")
@@ -28,7 +28,7 @@ public class Sale extends AbstractEntity<Long> {
     @JoinColumn(name = "website_id")
     private Website website;
 
-    public Sale(String playName, Double price, Timestamp date, Theater theater, Website website) {
+    public Sale(String playName, Double price, String date, Theater theater, Website website) {
         this.playName = playName;
         this.price = price;
         this.date = date;
@@ -56,11 +56,11 @@ public class Sale extends AbstractEntity<Long> {
         this.price = price;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
