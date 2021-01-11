@@ -1,12 +1,17 @@
 package br.ufscar.dc.dsw.promonstraomvc.service.impl;
 
+import br.ufscar.dc.dsw.promonstraomvc.dao.IUserDAO;
 import br.ufscar.dc.dsw.promonstraomvc.dao.IWebsiteDAO;
+import br.ufscar.dc.dsw.promonstraomvc.domain.User;
 import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
 import br.ufscar.dc.dsw.promonstraomvc.service.spec.IWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +20,40 @@ public class WebsiteService implements IWebsiteService {
 
     private final IWebsiteDAO websiteDAO;
 
+    private final IUserDAO userDAO;
+
+    private final BCryptPasswordEncoder passwordEncoder;
+
     @Autowired
-    public WebsiteService(IWebsiteDAO websiteDAO) {
+    public WebsiteService(IWebsiteDAO websiteDAO, IUserDAO userDAO, BCryptPasswordEncoder passwordEncoder) {
         this.websiteDAO = websiteDAO;
+        this.passwordEncoder = passwordEncoder;
+        this.userDAO = userDAO;
     }
 
     @Override
     public Website save(Website website) {
+        return websiteDAO.save(website);
+    }
+
+    @Override
+    public Website update(Website website) {
+        Website w = websiteDAO.findById(website.getId()).get();
+        w.setName(website.getName());
+        w.setUrl(website.getUrl());
+        w.setPhoneNumber(website.getPhoneNumber());
+        return websiteDAO.save(w);
+    }
+
+    @Override
+    public Website create(Website website) throws EmailAlreadyUsedException {
+        User user = userDAO.findByEmail(website.getEmail());
+        if (user != null) {
+            throw new EmailAlreadyUsedException();
+        }
+
+        website.setId(null);
+        website.setPassword(passwordEncoder.encode(website.getPassword()));
         return websiteDAO.save(website);
     }
 

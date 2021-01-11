@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+  <section layout:fragment="content">
+
+    <div class="container">
+      <h2 th:text="#{website.create.title}"></h2>
+      <form th:action="@{/website/create}" method="post">
+        <div class="form-group">
+          <label for="email" th:text="#{website.create.label.email}"></label>
+          <input type="text" id="email"
+                 name="email" class="form-control"
+                 autofocus="autofocus">
+        </div>
+        <div class="form-group">
+          <label for="name" th:text="#{website.create.label.name}"></label>
+          <input type="text" id="name"
+                 name="name" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="url" th:text="#{website.create.label.url}"></label>
+          <input type="text" id="url"
+                 name="url" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber" th:text="#{website.create.label.phoneNumber}"></label>
+          <input type="text" id="phoneNumber"
+                 name="phoneNumber" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password" th:text="#{website.create.label.password}"></label>
+          <input type="password" id="password"
+                 name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="submit" name="submit"
+                  class="btn btn-info" th:text="#{website.create.submit}">
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

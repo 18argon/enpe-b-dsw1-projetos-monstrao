@@ -1,12 +1,21 @@
 package br.ufscar.dc.dsw.promonstraomvc.controller;
 
+import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
 import br.ufscar.dc.dsw.promonstraomvc.service.impl.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/website")
@@ -23,5 +32,73 @@ public class WebsiteController {
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("websites", websiteService.findAll());
         return "website/index";
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView delete(@PathVariable String id) {
+        if (!id.isEmpty()) {
+            try {
+                Long idParsed = Long.parseLong(id);
+                websiteService.deleteById(idParsed);
+            } catch (NumberFormatException e) {
+                //do nothing and redirect
+            }
+        }
+
+        return new RedirectView("/website");
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable String id, ModelMap modelMap) {
+        if (!id.isEmpty()) {
+            try {
+                Long idParsed = Long.parseLong(id);
+                Optional<Website> website = websiteService.findById(idParsed);
+
+                if (!website.isPresent()) {
+                    return "redirect:/website";
+                }
+                modelMap.addAttribute("website", website.get());
+            } catch (NumberFormatException e) {
+                return "redirect:/website";
+            }
+        }
+
+        return "website/edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@Valid Website website, BindingResult result) {
+        List<FieldError> errorsToKeep = result.getFieldErrors().stream()
+                .filter(e -> !e.getField().equals("password"))
+                .collect(Collectors.toList());
+        result = new BeanPropertyBindingResult(website, "website");
+        errorsToKeep.forEach(result::addError);
+
+        if (result.hasErrors()) {
+            return "/website/edit";
+        }
+
+        websiteService.update(website);
+        return "redirect:/website";
+    }
+
+    @GetMapping("/create")
+    public String createForm() {
+        return "website/create";
+    }
+
+    @PostMapping("/create")
+    public String create(@Valid Website website, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/website/create";
+        }
+
+        try {
+            websiteService.create(website);
+        } catch (EmailAlreadyUsedException e) {
+            return "/website/create";
+        }
+        return "redirect:/website";
     }
 }

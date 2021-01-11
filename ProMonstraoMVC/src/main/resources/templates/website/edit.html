@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+  <section layout:fragment="content">
+
+    <div class="container">
+      <h2 th:text="#{website.edit.title}"></h2>
+      <form th:action="@{/website/edit}" method="post">
+        <input type="hidden" id="id" name="id" th:value="${website.id}"/>
+        <div class="form-group">
+          <label for="email" th:text="#{website.edit.label.email}"></label>
+          <input type="text" id="email"
+                 name="email" class="form-control"
+                 autofocus="autofocus" th:value="${website.email}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name" th:text="#{website.edit.label.name}"></label>
+          <input type="text" id="name"
+                 name="name" class="form-control"
+                 autofocus="autofocus" th:value="${website.name}">
+        </div>
+        <div class="form-group">
+          <label for="url" th:text="#{website.edit.label.url}"></label>
+          <input type="text" id="url"
+                 name="url" class="form-control"
+                 autofocus="autofocus" th:value="${website.url}">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber" th:text="#{website.edit.label.phoneNumber}"></label>
+          <input type="text" id="phoneNumber"
+                 name="phoneNumber" class="form-control"
+                 autofocus="autofocus" th:value="${website.phoneNumber}">
+        </div>
+        <div class="form-group">
+          <button type="submit" name="submit"
+                  class="btn btn-info" th:text="#{website.edit.submit}">
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
