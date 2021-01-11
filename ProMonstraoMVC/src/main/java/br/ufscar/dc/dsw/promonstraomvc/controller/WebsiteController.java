@@ -1,21 +1,19 @@
 package br.ufscar.dc.dsw.promonstraomvc.controller;
 
 import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.CreateWebsiteDTO;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.EditWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
 import br.ufscar.dc.dsw.promonstraomvc.service.impl.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/website")
@@ -68,18 +66,12 @@ public class WebsiteController {
     }
 
     @PostMapping("/edit")
-    public String edit(@Valid Website website, BindingResult result) {
-        List<FieldError> errorsToKeep = result.getFieldErrors().stream()
-                .filter(e -> !e.getField().equals("password"))
-                .collect(Collectors.toList());
-        result = new BeanPropertyBindingResult(website, "website");
-        errorsToKeep.forEach(result::addError);
-
+    public String edit(@Valid EditWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             return "/website/edit";
         }
 
-        websiteService.update(website);
+        websiteService.update(dto);
         return "redirect:/website";
     }
 
@@ -89,13 +81,13 @@ public class WebsiteController {
     }
 
     @PostMapping("/create")
-    public String create(@Valid Website website, BindingResult result) {
+    public String create(@Valid CreateWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             return "/website/create";
         }
 
         try {
-            websiteService.create(website);
+            websiteService.create(dto);
         } catch (EmailAlreadyUsedException e) {
             return "/website/create";
         }

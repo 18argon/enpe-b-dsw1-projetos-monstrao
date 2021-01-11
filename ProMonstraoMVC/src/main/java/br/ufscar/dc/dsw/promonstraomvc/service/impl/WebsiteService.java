@@ -4,6 +4,8 @@ import br.ufscar.dc.dsw.promonstraomvc.dao.IUserDAO;
 import br.ufscar.dc.dsw.promonstraomvc.dao.IWebsiteDAO;
 import br.ufscar.dc.dsw.promonstraomvc.domain.User;
 import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.CreateWebsiteDTO;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.EditWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
 import br.ufscar.dc.dsw.promonstraomvc.service.spec.IWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,24 +38,28 @@ public class WebsiteService implements IWebsiteService {
     }
 
     @Override
-    public Website update(Website website) {
-        Website w = websiteDAO.findById(website.getId()).get();
-        w.setName(website.getName());
-        w.setUrl(website.getUrl());
-        w.setPhoneNumber(website.getPhoneNumber());
+    public Website update(EditWebsiteDTO dto) {
+        Optional<Website> ow = websiteDAO.findById(Long.parseLong(dto.getId()));
+        if (!ow.isPresent()) {
+            return null;
+        }
+        Website w = ow.get();
+        w.setName(dto.getName());
+        w.setUrl(dto.getUrl());
+        w.setPhoneNumber(dto.getPhoneNumber());
         return websiteDAO.save(w);
     }
 
     @Override
-    public Website create(Website website) throws EmailAlreadyUsedException {
-        User user = userDAO.findByEmail(website.getEmail());
+    public Website create(CreateWebsiteDTO dto) throws EmailAlreadyUsedException {
+        User user = userDAO.findByEmail(dto.getEmail());
         if (user != null) {
             throw new EmailAlreadyUsedException();
         }
 
-        website.setId(null);
-        website.setPassword(passwordEncoder.encode(website.getPassword()));
-        return websiteDAO.save(website);
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        Website w = new Website(dto.getEmail(), hashedPassword, dto.getName(), dto.getUrl(), dto.getPhoneNumber());
+        return websiteDAO.save(w);
     }
 
     @Override

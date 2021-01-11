@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.promonstraomvc.service.spec;
 
 import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.CreateWebsiteDTO;
+import br.ufscar.dc.dsw.promonstraomvc.domain.dto.EditWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -11,9 +13,9 @@ public interface IWebsiteService {
 
     Website save(Website website);
 
-    Website update(Website updateWebsiteDTO);
+    Website update(EditWebsiteDTO dto);
 
-    Website create(Website website) throws EmailAlreadyUsedException;
+    Website create(CreateWebsiteDTO dto) throws EmailAlreadyUsedException;
 
     List<Website> findAll();
 
