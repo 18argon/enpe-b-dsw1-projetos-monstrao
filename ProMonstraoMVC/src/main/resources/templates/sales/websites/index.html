@@ -6,11 +6,9 @@
   <section layout:fragment="content">
 
     <div class="container">
-      <div class="row">
-        <div class="col"><h2 th:text="#{sales.title}"></h2></div>
-        <div>
-          <a class="btn btn-success ml-auto" th:href="@{/sales/websites/create}">Create</a>
-        </div>
+      <div class="row mb-2">
+        <h2 th:text="#{sales.title}"></h2>
+        <a class="btn btn-success ml-auto" th:href="@{/sales/websites/create}" th:text="#{sales.create}"></a>
       </div>
       <table class="table table-hover">
         <thead>
