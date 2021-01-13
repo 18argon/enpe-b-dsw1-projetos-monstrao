@@ -2,7 +2,6 @@ package br.ufscar.dc.dsw.promonstraomvc.service.impl;
 
 import br.ufscar.dc.dsw.promonstraomvc.dao.ITheaterDAO;
 import br.ufscar.dc.dsw.promonstraomvc.domain.*;
-import br.ufscar.dc.dsw.promonstraomvc.domain.Theater;
 import br.ufscar.dc.dsw.promonstraomvc.domain.dto.CreateTheaterDTO;
 import br.ufscar.dc.dsw.promonstraomvc.domain.dto.EditTheaterDTO;
 import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;

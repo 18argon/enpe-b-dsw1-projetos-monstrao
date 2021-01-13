@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
 
 @Entity
 public class Sale extends AbstractEntity<Long> {
@@ -85,7 +84,7 @@ public class Sale extends AbstractEntity<Long> {
         return "Sale{" +
                 "playName='" + playName + '\'' +
                 ", price=" + price +
-                ", date=" + date.toString() +
+                ", date=" + date +
                 ", theater=" + theater.getName() +
                 ", website=" + website.getName() +
                 '}';

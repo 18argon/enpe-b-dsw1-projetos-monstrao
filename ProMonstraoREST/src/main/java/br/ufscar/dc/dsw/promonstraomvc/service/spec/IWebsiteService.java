@@ -4,7 +4,6 @@ import br.ufscar.dc.dsw.promonstraomvc.domain.Website;
 import br.ufscar.dc.dsw.promonstraomvc.domain.dto.CreateWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraomvc.domain.dto.EditWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraomvc.exception.EmailAlreadyUsedException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
