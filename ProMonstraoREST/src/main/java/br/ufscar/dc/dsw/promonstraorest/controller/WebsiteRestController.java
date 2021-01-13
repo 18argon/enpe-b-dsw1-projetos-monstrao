@@ -5,20 +5,17 @@ import br.ufscar.dc.dsw.promonstraorest.domain.dto.CreateWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraorest.domain.dto.EditWebsiteDTO;
 import br.ufscar.dc.dsw.promonstraorest.exception.EmailAlreadyUsedException;
 import br.ufscar.dc.dsw.promonstraorest.service.spec.IWebsiteService;
-import com.ctc.wstx.evt.WDTD;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
-@RestController()
+@RestController("/sites")
 public class WebsiteRestController {
 
     private final IWebsiteService websiteService;
@@ -28,7 +25,7 @@ public class WebsiteRestController {
         this.websiteService = websiteService;
     }
 
-    @PostMapping(path = "/sites", headers = "Accept=application/json")
+    @PostMapping(headers = "Accept=application/json")
     public ResponseEntity<Website> create(@Valid @RequestBody CreateWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(null);
@@ -41,7 +38,7 @@ public class WebsiteRestController {
         }
     }
 
-    @GetMapping(path = "/sites")
+    @GetMapping()
     public ResponseEntity<List<Website>> list() {
         List<Website> websites = websiteService.findAll();
         if (websites.isEmpty()) {
@@ -50,14 +47,14 @@ public class WebsiteRestController {
         return ResponseEntity.ok(websites);
     }
 
-    @GetMapping(path = "/sites/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Website> getById(@PathVariable("id") Long id) {
         Optional<Website> ow = websiteService.findById(id);
         return ow.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping(path = "/sites/{id}", headers = "Accept=application/json")
+    @PutMapping(path = "/{id}", headers = "Accept=application/json")
     public ResponseEntity<Website> update(@PathVariable("id") Long id,
                                           @Valid @RequestBody EditWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
@@ -69,7 +66,7 @@ public class WebsiteRestController {
         return ResponseEntity.ok(website);
     }
 
-    @DeleteMapping("/sites/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Website> delete(@PathVariable("id") Long id) {
         Optional<Website> ow = websiteService.findById(id);
         if (!ow.isPresent()) {
