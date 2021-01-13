@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 
 public class EditWebsiteDTO {
 
-    @NotBlank
     private String id;
 
     @NotBlank

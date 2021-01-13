@@ -17,11 +17,11 @@ Implementação de uma api REST para o projeto ProMonstrão.
 
 ### CRUD: Sites de vendas de ingresso
 
-- [ ] POST http://localhost:8080/sites
-- [ ] GET http://localhost:8080/sites
-- [ ] GET http://localhost:8080/sites/{id}
-- [ ] PUT http://localhost:8080/sites/{id}
-- [ ] DELETE http://localhost:8080/sites/{id}
+- [X] POST http://localhost:8080/sites
+- [X] GET http://localhost:8080/sites
+- [X] GET http://localhost:8080/sites/{id}
+- [X] PUT http://localhost:8080/sites/{id}
+- [X] DELETE http://localhost:8080/sites/{id}
 
 ### CRUD: Teatros
 - [ ] POST http://localhost:8080/teatros

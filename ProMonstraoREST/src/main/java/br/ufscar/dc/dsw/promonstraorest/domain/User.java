@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.promonstraorest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -17,6 +19,7 @@ public class User extends AbstractEntity<Long> {
     @Column(nullable = false, length = 256, unique = true)
     private String email;
 
+    @JsonIgnore
     @NotBlank
     @Column(nullable = false, length = 64)
     private String password;
@@ -31,7 +34,7 @@ public class User extends AbstractEntity<Long> {
 
     protected User() {
         this.role = ROLE_NAME;
-    };
+    }
 
     protected User(String role) {
         this.role = role;

@@ -74,7 +74,7 @@ public class CreateWebsiteDTO {
 
     @Override
     public String toString() {
-        return "EditTheaterDto{" +
+        return "CreateWebsiteDto{" +
                 "email='" + this.email + '\'' +
                 ", name='" + this.name + '\'' +
                 ", url='" + this.url + '\'' +
