@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests();
         http.authorizeRequests()
                 .antMatchers("/sites", "/sites/{\\d+}").permitAll()
+                .antMatchers("/teatros", "/teatros/{\\d+}", "/teatros/cidades/{\\w+}").permitAll()
                 .anyRequest().authenticated();
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
-@RestController("/sites")
+@RestController()
 public class WebsiteRestController {
 
     private final IWebsiteService websiteService;
@@ -25,7 +25,7 @@ public class WebsiteRestController {
         this.websiteService = websiteService;
     }
 
-    @PostMapping(headers = "Accept=application/json")
+    @PostMapping(value="/sites",headers = "Accept=application/json")
     public ResponseEntity<Website> create(@Valid @RequestBody CreateWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(null);
@@ -38,7 +38,7 @@ public class WebsiteRestController {
         }
     }
 
-    @GetMapping()
+    @GetMapping("/sites")
     public ResponseEntity<List<Website>> list() {
         List<Website> websites = websiteService.findAll();
         if (websites.isEmpty()) {
@@ -47,14 +47,14 @@ public class WebsiteRestController {
         return ResponseEntity.ok(websites);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/sites/{id}")
     public ResponseEntity<Website> getById(@PathVariable("id") Long id) {
         Optional<Website> ow = websiteService.findById(id);
         return ow.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping(path = "/{id}", headers = "Accept=application/json")
+    @PutMapping(path = "/sites/{id}", headers = "Accept=application/json")
     public ResponseEntity<Website> update(@PathVariable("id") Long id,
                                           @Valid @RequestBody EditWebsiteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
@@ -66,7 +66,7 @@ public class WebsiteRestController {
         return ResponseEntity.ok(website);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/sites/{id}")
     public ResponseEntity<Website> delete(@PathVariable("id") Long id) {
         Optional<Website> ow = websiteService.findById(id);
         if (!ow.isPresent()) {

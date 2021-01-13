@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.promonstraorest.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(value = {"id"})
 public class City extends AbstractEntity<Long> {
 
     @NotBlank
@@ -17,7 +20,7 @@ public class City extends AbstractEntity<Long> {
 
     @JsonIgnore
     @OneToMany(mappedBy = "city")
-    private List<Theater> Theaters;
+    private List<Theater> theaters;
 
     public City(String name) {
         this.name = name;
@@ -36,11 +39,11 @@ public class City extends AbstractEntity<Long> {
     }
 
     public List<Theater> getTheaters() {
-        return Theaters;
+        return theaters;
     }
 
     public void setTheaters(List<Theater> theaters) {
-        Theaters = theaters;
+        this.theaters = theaters;
     }
 
     @Override
@@ -50,3 +53,4 @@ public class City extends AbstractEntity<Long> {
                 '}';
     }
 }
+

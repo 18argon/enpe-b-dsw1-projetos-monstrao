@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 
 public class EditTheaterDTO {
 
-    @NotBlank
     private String id;
 
     @NotBlank
