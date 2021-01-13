@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/sites", "/sites/{\\d+}").permitAll()
                 .antMatchers("/teatros", "/teatros/{\\d+}", "/teatros/cidades/{\\w+}").permitAll()
+                .antMatchers("/promocoes", "/promocoes/{\\d+}",
+                        "/promocoes/sites/{\\d+}", "/promocoes/teatros/{\\d+}").permitAll()
                 .anyRequest().authenticated();
     }
 }

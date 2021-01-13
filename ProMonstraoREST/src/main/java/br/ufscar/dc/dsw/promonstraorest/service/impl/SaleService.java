@@ -93,6 +93,16 @@ public class SaleService implements ISaleService {
     }
 
     @Override
+    public List<Sale> findAll() {
+        return saleDAO.findAll();
+    }
+
+    @Override
+    public Optional<Sale> findById(Long id) {
+        return saleDAO.findById(id);
+    }
+
+    @Override
     public Sale save(Sale sale) {
         return saleDAO.save(sale);
     }

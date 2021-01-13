@@ -28,6 +28,7 @@ public class User extends AbstractEntity<Long> {
     @Column(nullable = false, length = 256)
     private String name;
 
+    @JsonIgnore
     @NotBlank
     @Column(nullable = false, length = 16)
     private final String role;
