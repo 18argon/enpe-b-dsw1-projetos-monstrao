@@ -24,12 +24,12 @@ Implementação de uma api REST para o projeto ProMonstrão.
 - [X] DELETE http://localhost:8080/sites/{id}
 
 ### CRUD: Teatros
-- [ ] POST http://localhost:8080/teatros
-- [ ] GET http://localhost:8080/teatros
-- [ ] GET http://localhost:8080/teatros/{id}
-- [ ] GET http://localhost:8080/teatros/cidades/{nome}
-- [ ] PUT http://localhost:8080/teatros/{id}
-- [ ] DELETE http://localhost:8080/teatros/{id}
+- [X] POST http://localhost:8080/teatros
+- [X] GET http://localhost:8080/teatros
+- [X] GET http://localhost:8080/teatros/{id}
+- [X] GET http://localhost:8080/teatros/cidades/{nome}
+- [X] PUT http://localhost:8080/teatros/{id}
+- [X] DELETE http://localhost:8080/teatros/{id}
 ### CRUD: promoções
 - [ ] GET http://localhost:8080/promocoes
 - [ ] GET http://localhost:8080/promocoes/{id}
