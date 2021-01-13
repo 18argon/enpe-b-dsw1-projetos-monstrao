@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.promonstraorest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,6 +24,7 @@ public class Website extends User {
     @Column(name = "phone_number", nullable = false, length = 32)
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "website", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Sale> sales;

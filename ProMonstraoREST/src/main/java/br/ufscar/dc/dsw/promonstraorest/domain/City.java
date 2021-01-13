@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.promonstraorest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -13,6 +15,7 @@ public class City extends AbstractEntity<Long> {
     @Column(nullable = false, length = 128, unique = true)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<Theater> Theaters;
 

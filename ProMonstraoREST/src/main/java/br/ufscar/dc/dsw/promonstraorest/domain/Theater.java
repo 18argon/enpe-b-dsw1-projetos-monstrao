@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.promonstraorest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -20,6 +21,7 @@ public class Theater extends User {
     @JoinColumn(name = "city_id")
     private City city;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Sale> sales;
